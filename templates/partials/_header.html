@@ -1,0 +1,18 @@
+{%load static%}
+
+<header class="cabecalho">
+    <img src="{%static ''%}" alt="Logo da Colecionei" />
+    <div class="cabecalho__busca">  
+        </div>
+    </div>
+    {% include 'partials/_alerts.html' %}
+</header>
+<main class="principal">
+    <section class="menu-lateral">
+        <nav class="menu-lateral__navegacao">
+            <a href=""><img src="{% static '' %}"> Feed</a>
+            <a href=""><img src="{% static '' %}"> Buscar</a>
+            <a href=""><img src="{% static '' %}"> Favoritas</a>
+            <a href=""><img src="{% static '' %}"> Perfil</a>
+        </nav>
+    </section>

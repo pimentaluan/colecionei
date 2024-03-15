@@ -5,14 +5,13 @@
     <div class="cabecalho__busca">  
         </div>
     </div>
-    {% include 'partials/_alerts.html' %}
-</header>
-<main class="principal">
-    <section class="menu-lateral">
-        <nav class="menu-lateral__navegacao">
-            <a href=""><img src="{% static '' %}"> Feed</a>
+    <section class="menu">
+        <nav class="menu_navegacao">
+            <a href="{% url 'feed' %}"><img src="{% static '' %}"> Feed</a>
             <a href=""><img src="{% static '' %}"> Buscar</a>
             <a href=""><img src="{% static '' %}"> Favoritas</a>
             <a href=""><img src="{% static '' %}"> Perfil</a>
         </nav>
     </section>
+</header>
+<main class="principal">

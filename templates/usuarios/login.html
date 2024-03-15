@@ -1,15 +1,29 @@
-{% extends 'shared/base.html' %}
 {% load static %}
-{% block content %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Colecionei</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
 <body>
+    {% include 'partials/_header.html' %}
     <div class="pagina-inicial">
-            <section class="galeria" >
+            <section class="corpo_login" >
+                {% include 'partials/_alerts.html' %}
                 <form id="form_login" action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                     <div class="row">
                         {% for field in form.visible_fields %}
                         <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                            <label for = "{{ field.id_for_lable }}" style="color:#D9D9D9; margin-bottom: 5px;">{{field.label}}</label>
+                            <label for = "{{ field.id_for_lable }}" id="label">{{field.label}}</label>
                             {{ field }}
                         </div>
                         {% endfor %}
@@ -17,9 +31,21 @@
                             <button class="btn btn-outline-primary" type="submit">Entrar</button>
                         </div>
                     </div>
+                    <div>
+                        <a href="{% url 'cadastro' %}">Criar conta</a>
+                    </div>
                 </form>
+
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center mx-3 mb-0 text-muted">ou faça login com:</p>
+                </div>
+                
+                <div>
+                    <a href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=179984192316-a58khhpd25s6di9idfo1mkfifelu323h.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=profile%20email&response_type=code&state=veifxT7pccWIcZBw&access_type=online&service=lso&o2v=2&theme=mn&ddm=0&flowName=GeneralOAuthFlow" class="btn btn-outline-danger" style="width: 100%;"><img src="{%static '/assets/imagens/Google__G__logo.svg.png'%}" style="height: 20px;"> Google</a>
+                </div>
+
             </section>
         </main>
     </div>
+    {% include 'partials/_footer.html' %}
 </body>
-{% endblock %}

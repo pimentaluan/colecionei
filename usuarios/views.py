@@ -23,7 +23,7 @@ def login(request):
                 messages.success(request, f'{nome} logado com sucesso!')
                 return redirect('feed')
             else:
-                messages.error(request, f'{nome} erro ao efetuar login!')
+                messages.eror(request, f'{nome} erro ao efetuar login!')
                 return redirect('login')
 
     return render(request, "usuarios/login.html", {"form": form})

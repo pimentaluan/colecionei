@@ -41,7 +41,7 @@
                 </div>
                 
                 <div>
-                    <a href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=179984192316-a58khhpd25s6di9idfo1mkfifelu323h.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=profile%20email&response_type=code&state=veifxT7pccWIcZBw&access_type=online&service=lso&o2v=2&theme=mn&ddm=0&flowName=GeneralOAuthFlow" class="btn btn-outline-danger" style="width: 100%;"><img src="{%static '/assets/imagens/Google__G__logo.svg.png'%}" style="height: 20px;"> Google</a>
+                    <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger" style="width: 100%;"><img src="{%static '/assets/imagens/Google__G__logo.svg.png'%}" style="height: 20px;"> Google</a>
                 </div>
 
             </section>

@@ -1,12 +1,14 @@
 .pagina-inicial{
     background-color: rgb(71, 71, 255);
+    display: flex;
 }
 
-.corpo_login{
+.corpo_login {
+    margin-left: auto;
     width: 50%;
     background-color: #fffeed;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     height: 100vh;
     padding: 20px;
 }
@@ -47,4 +49,3 @@
     width: 50%;
     border: solid #000000 1px;
 }
-

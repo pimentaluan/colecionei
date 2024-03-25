@@ -1,26 +1,50 @@
-{% extends 'shared/base.html' %}
 {% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Colecionei</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{% static 'styles/cadastro.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
 <body>
     <div class="pagina-inicial">
-            <section class="galeria" >
-                <form action="{% url 'cadastro' %}" method="POST">
-                    {% csrf_token %}
-                        <div class="row">
-                            {% for field in form.visible_fields %}
-                            <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                                <label for = "{{ field.id_for_lable }}" style="color:#D9D9D9; margin-bottom: 5px;">{{field.label}}</label>
-                                {{ field }}
-                            </div>
-                            {% endfor %}
-                            <div>
-                                <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Entrar</button>
-                            </div>
+        <section class="corpo_login" >
+            <img src="{%static ''%}" alt="Logo da Colecionei" />
+            <h3>Cadastro</h3>
+            <h6>Preencha com seus dados</h6>
+            <form id="form_login" action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    {% for field in form.visible_fields %}
+                    <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
+                        <label for="{{ field.id_for_label }}" id="label">{{field.label}}</label>
+                        {% if field.label == "Senha" %}
+                        <div class="senha-container">
+                            <input id="senha" type="password" name="{{ field.name }}" class="form-control"  placeholder="Abc123"/>
+                            <img src="{%static 'assets/icones/1x/view.png'%}" alt="Mostrar Senha" onclick="MostrarSenha()" id="olho"/>
                         </div>
-                    </form>
-            </section>
-        </main>
+                        {% else %}
+                        {{ field }}
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <div>
+                        <button class="btn btn-outline-primary" type="submit" style="width: 100%;">Cadastrar</button>
+                    </div>
+                </div>
+                <div>
+                    <a href="{% url 'login' %}" id='linkLogin'>Já tem uma conta? Entre aqui</a>
+                </div>
+            </form>
+            {% include 'partials/_alerts.html' %}
+        </section>
     </div>
+    <script src="{% static 'scripts/login.js' %}"></script>
 </body>
-{% endblock %}

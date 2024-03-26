@@ -45,7 +45,7 @@ class CadastroForms(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Ex.: Fulando Silva"
+                "placeholder": "Ex.: Fulano Silva"
             }
         )
     )
@@ -69,7 +69,7 @@ class CadastroForms(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Ex.: Digite sua senha"
+                "placeholder": "Ex.: Fulano123@"
             }
         )
     )
@@ -81,7 +81,7 @@ class CadastroForms(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Ex.: Confirme sua senha "
+                "placeholder": "Ex.: Fulano123@ "
             }
         )
     )

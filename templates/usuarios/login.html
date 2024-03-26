@@ -11,25 +11,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
        
     <div class="pagina-inicial">
             <section class="corpo_login" >
-                <img src="{%static ''%}" alt="Logo da Colecionei" />
-                <h3>Entrar</h3>
-                <h6>Preencha com seus dados</h6>
+                <img src="{%static 'assets/imagens/logo1.svg'%}" alt="Logo da Colecionei" style="width: 40%; margin-top: 40px; margin-bottom: 50px;" />
+                <h3 style="font-size: 40px;">Entrar</h3>
                 <form id="form_login" action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
                     <div class="row">
                         {% for field in form.visible_fields %}
                         <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                            <label for="{{ field.id_for_label }}" id="label">{{field.label}}</label>
+                            <label for="{{ field.id_for_label }}" id="label" style="margin-bottom: 10px; margin-top: 20px;">{{field.label}}</label>
                             {% if field.label == "Senha" %}
                             <div class="senha-container">
                                 <input id="senha" type="password" name="{{ field.name }}" class="form-control"  placeholder="Abc123"/>
-                                <img src="{%static 'assets/icones/1x/view.png'%}" alt="Mostrar Senha" onclick="MostrarSenha()" id="olho"/>
+                                <img src="{%static 'assets/icones/view.png'%}" alt="Mostrar Senha" onclick="MostrarSenha()" id="olho"/>
                             </div>
                             {% else %}
                             {{ field }}
@@ -37,25 +37,45 @@
                         </div>
                         {% endfor %}
                         <div>
-                            <button class="btn btn-outline-primary" type="submit" style="width: 100%;">Entrar</button>
+                            <button class="btn btn-warning" type="submit" style="width: 100%;">Entrar</button>
                         </div>
                     </div>
                     <div>
-                        <a href="{% url 'cadastro' %}" id="linkCadastro">Criar conta</a>
+                        <a href="{% url 'cadastro' %}" id="linkCadastro" style="color: yellow; width: 100%;">Criar conta</a>
                     </div>
                 </form>
 
                 <div class="divider d-flex align-items-center my-4">
-                    <p class="text-center mx-3 mb-0 text-muted">ou faça login com:</p>
+                    <hr class="text-white flex-grow-1">
+                    <p style="color: antiquewhite;">ou faça login com:</p>
+                    <hr class="text-white flex-grow-1">
                 </div>
                 
                 <div>
-                    <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger" style="width: 100%;"><img src="{%static '/assets/imagens/Google__G__logo.svg.png'%}" style="height: 20px;"> Google</a>
+                    <a href="{% provider_login_url 'google' %}" class="btn btn-danger" style="width: 100%;"><img src="{%static '/assets/imagens/google.png'%}" style="height: 20px;"> Google</a>
                 </div>
 
                 {% include 'partials/_alerts.html' %}
 
             </section>
+
+            <div class="chuva-icones">
+                <img src="{%static 'assets/icones/ampulheta.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/alvo.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/aviao_de_papel.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/bandeira.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/botton.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/caveira.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/coroa.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/diamante.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/espada.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/fantasma.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/foguete.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/meteoro.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/moeda.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/raio.svg'%}" alt="" class="icone"/>
+                <img src="{%static 'assets/icones/trofeu.svg'%}" alt="" class="icone"/>
+            </div>
         </main>
     </div>
     <script src="{% static 'scripts/login.js' %}"></script>

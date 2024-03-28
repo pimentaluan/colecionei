@@ -1,11 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
+from django.conf import settings
+
 
 class Publicacao(models.Model):
-    autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='publicacoes')
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     texto = models.TextField()
     imagem = models.ImageField(upload_to='publicacoes/', null=True, blank=True)
     data_publicacao = models.DateTimeField(auto_now_add=True)

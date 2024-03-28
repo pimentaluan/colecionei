@@ -1,16 +1,14 @@
 {%load static%}
 
 <header class="cabecalho">
-    <img src="{%static ''%}" alt="Logo da Colecionei" />
-    <div class="cabecalho__busca">  
-        </div>
-    </div>
+    <img src="{% static 'assets/imagens/logo3.svg' %}" alt="Logo da Colecionei" />
     <section class="menu">
         <nav class="menu_navegacao">
-            <a href="{% url 'feed' %}"><img src="{% static '' %}"> Feed</a>
-            <a href=""><img src="{% static '' %}"> Buscar</a>
-            <a href=""><img src="{% static '' %}"> Favoritas</a>
-            <a href=""><img src="{% static '' %}"> Perfil</a>
+            <a href="{% url 'feed' %}"><img src="{% static 'assets/icones/empilhar.svg' %}"> Feed</a>
+            <a href=""><img src="{% static 'assets/icones/alvo.svg' %}"> Buscar</a>
+            <a href=""><img src="{% static 'assets/icones/trofeu.svg' %}"> Favoritas</a>
+            <a href=""><img src="{% static 'assets/icones/coroa.svg' %}"> Nova coleção</a>
+            <a href=""><img src="{{ user.photo.url }}" id="menu_perfil_photo"> Perfil</a>
         </nav>
     </section>
 </header>

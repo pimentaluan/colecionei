@@ -1,12 +1,17 @@
 from django.contrib import admin
-from colecoes.models import Publicacao
+from colecoes.models import Colecao, Item
 
-class ListaPublicacoes(admin.ModelAdmin):
-    list_display = ("id","autor", "texto", "data_publicacao", "publicada")
-    list_display_links = ("id", "autor")
-    search_fields = ("autor",)
-    list_filter = ("publicada",)
-    list_editable = ("publicada",)
-    list_per_page = 10
+@admin.register(Colecao)
+class ColecaoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'descricao', 'categoria', 'usuario')
+    list_filter = ('categoria', 'usuario')
+    search_fields = ('nome', 'descricao')
+    date_hierarchy = 'data_criacao'
 
-admin.site.register(Publicacao, ListaPublicacoes)
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'descricao', 'categoria', 'colecao')
+    list_filter = ('categoria', 'colecao')
+    search_fields = ('nome', 'descricao')
+    date_hierarchy = 'data_aquisicao'
+    readonly_fields = ('foto',)

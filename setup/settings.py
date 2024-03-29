@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'colecoes.apps.ColecoesConfig',
     'django.contrib.sites',
     'allauth',
+    'colorfield',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',

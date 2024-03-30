@@ -18,6 +18,7 @@
     <div class="pagina-inicial">
         <section class="corpo_login" >
             <img src="{%static 'assets/imagens/logo1.svg'%}" alt="Logo da Colecionei" id="logo"/>
+            {% include 'partials/_alerts.html' %}
             <form id="form_login" action="{% url 'cadastro' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
@@ -42,7 +43,6 @@
                     <a href="{% url 'login' %}" id='linkLogin' style="color: yellow; width: 100%;">Já tem uma conta? Entre aqui</a>
                 </div>
             </form>
-            {% include 'partials/_alerts.html' %}
         </section>
 
         

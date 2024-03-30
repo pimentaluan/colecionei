@@ -10,10 +10,10 @@
     <title>Login - Colecionei</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="{% static 'styles/usuarios/autenticacao.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/usuarios/autenticacao.css' %}">
 </head>
 
 <body>
@@ -21,6 +21,7 @@
     <div class="pagina-inicial">
         <section class="corpo_login">
             <img src="{%static 'assets/imagens/logo1.svg'%}" alt="Logo da Colecionei" id="logo" />
+            {% include 'partials/_alerts.html' %}
             <form id="form_login" action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
@@ -59,9 +60,6 @@
                 <a href="{% provider_login_url 'google' %}" class="btn btn-danger" style="width: 100%;"><img
                         src="{%static '/assets/imagens/google.png'%}" style="height: 20px;"> Google</a>
             </div>
-
-            {% include 'partials/_alerts.html' %}
-
         </section>
 
         <div class="chuva-icones">

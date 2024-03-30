@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from usuarios.forms import LoginForms, CadastroForms
-from django.contrib.auth.models import User
+from usuarios.models import Usuario
 from django.contrib import auth, messages
 
 def login(request):
@@ -43,11 +43,11 @@ def cadastro(request):
             email = form.cleaned_data["email"]
             senha = form.cleaned_data["senha_1"]
 
-            if User.objects.filter(username=nome).exists():
+            if Usuario.objects.filter(username=nome).exists():  # Altere esta linha
                 messages.error(request, f'{nome} já existe!')
                 return redirect('cadastro')
 
-            usuario = User.objects.create_user(
+            usuario = Usuario.objects.create_user(  # Altere esta linha
                 username=nome,
                 email=email,
                 password=senha

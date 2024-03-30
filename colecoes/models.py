@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from colorfield.fields import ColorField
+from usuarios.models import Usuario
 
 
 
@@ -57,8 +58,7 @@ class Colecao(models.Model):
     tags = models.CharField(max_length=100, blank=True)
     orcamento_colecao = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     localizacao_colecao = models.CharField(max_length=100, blank=True)
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     class Meta:
         unique_together = ('nome', 'usuario',)
 

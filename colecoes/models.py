@@ -6,52 +6,74 @@ from django.conf import settings
 from colorfield.fields import ColorField
 from usuarios.models import Usuario
 
+class Categoria(models.Model):
+    CATEGORIAS_OPCOES = [
+        ('Livros', 'Livros'),
+        ('Filmes', 'Filmes'),
+        ('Músicas', 'Músicas'),
+        ('Jogos', 'Jogos'),
+        ('Selos', 'Selos'),
+        ('Moedas', 'Moedas'),
+        ('Quadrinhos', 'Quadrinhos'),
+        ('Carros', 'Carros'),
+        ('Vinhos', 'Vinhos'),
+        ('Cartas', 'Cartas'),
+        ('Miniaturas', 'Miniaturas'),
+        ('Brinquedos', 'Brinquedos'),
+        ('Antiguidades', 'Antiguidades'),
+        ('Relógios', 'Relógios'),
+        ('Jóias', 'Jóias'),
+        ('Instrumentos Musicais', 'Instrumentos Musicais'),
+        ('Artes', 'Artes'),
+        ('Itens Esportivos', 'Itens Esportivos'),
+        ('Eletrônicos', 'Eletrônicos'),
+        ('Vestuário', 'Vestuário'),
+        ('Acessórios', 'Acessórios'),
+        ('Cosméticos', 'Cosméticos'),
+        ('Utensílios Domésticos', 'Utensílios Domésticos'),
+        ('Decoração', 'Decoração'),
+        ('Móveis', 'Móveis'),
+        ('Eletrodomésticos', 'Eletrodomésticos'),
+        ('Ferramentas', 'Ferramentas'),
+        ('Brindes', 'Brindes'),
+        ('Peças Religiosas', 'Peças Religiosas'),
+        ('Charutos', 'Charutos'),
+        ('Chaveiros', 'Chaveiros'),
+        ('Pedras Preciosas', 'Pedras Preciosas'),
+        ('Plantas', 'Plantas'),
+        ('Artefatos Históricos', 'Artefatos Históricos'),
+        ('Culinária', 'Culinária'),
+        ('Outros', 'Outros'),
+    ]
+    nome = models.CharField(max_length=100, choices=CATEGORIAS_OPCOES)
+    imagem_padrao = models.ImageField(upload_to='imagens_categorias/', blank=True, null=True)
 
+    def __str__(self):
+        return self.nome
+COLOR_CHOICES = [
+    ('#FFCA2C', 'Amarelo Claro'),
+    ('#D9C95B', 'Amarelo Escuro'),
+    ('#D9AA5B', 'Laranja Claro'),
+    ('#D9D2A3', 'Areia'),
+    ('#004FFF', 'Azul Marinho'),
+    ('#5300FF', 'Roxo'),
+    ('#5B5BD9', 'Lilás'),
+    ('#5BABD9', 'Azul Claro'),
+    ('#8F00DB', 'Uva'),
+    ('#A3A3D9', 'Lilás Claro'),
+    ('#FF0049', 'Vermelho'),
+    ('#FF4400', 'Laranja Neon'),
+    ('#D9675B', 'Laranja Claro'),
+    ('#D95BCA', 'Rosa'),
+    ('#DB6100', 'Laranja Escuro'),
+    ('#D9A8A3', 'Bege'),
+]
 
 class Colecao(models.Model):
-    CATEGORIAS_OPCOES = [
-        ('LIVROS', 'Livros'),
-        ('FILMES', 'Filmes'),
-        ('MÚSICAS', 'Músicas'),
-        ('JOGOS', 'Jogos'),
-        ('SELOS', 'Selos'),
-        ('MOEDAS', 'Moedas'),
-        ('QUADRINHOS', 'Quadrinhos'),
-        ('CARROS', 'Carros'),
-        ('VINHOS', 'Vinhos'),
-        ('CARTAS', 'Cartas'),
-        ('MINIATURAS', 'Miniaturas'),
-        ('BRINQUEDOS', 'Brinquedos'),
-        ('ANTIGUIDADES', 'Antiguidades'),
-        ('RELÓGIOS', 'Relógios'),
-        ('JÓIAS', 'Jóias'),
-        ('INSTRUMENTOS_MUSICAIS', 'Instrumentos Musicais'),
-        ('ARTES', 'Artes'),
-        ('ITENS_ESPORTIVOS', 'Itens Esportivos'),
-        ('ELETRÔNICOS', 'Eletrônicos'),
-        ('VESTUÁRIO', 'Vestuário'),
-        ('ACESSÓRIOS', 'Acessórios'),
-        ('COSMÉTICOS', 'Cosméticos'),
-        ('UTENSÍLIOS_DOMÉSTICOS', 'Utensílios Domésticos'),
-        ('DECORAÇÃO', 'Decoração'),
-        ('MÓVEIS', 'Móveis'),
-        ('ELETRODOMÉSTICOS', 'Eletrodomésticos'),
-        ('FERRAMENTAS', 'Ferramentas'),
-        ('BRINDES', 'Brindes'),
-        ('PEÇAS_RELIGIOSAS', 'Peças Religiosas'),
-        ('CHARUTOS', 'Charutos'),
-        ('CHAVEIROS', 'Chaveiros'),
-        ('PEDRAS_PRECIOSAS', 'Pedras Preciosas'),
-        ('PLANTAS', 'Plantas'),
-        ('ARTEFATOS_HISTÓRICOS', 'Artefatos Históricos'),
-        ('CULINÁRIA', 'Culinária'),
-        ('OUTROS', 'Outros'),
-    ]
-
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
-    cor = ColorField(default='#FFF1C0', blank=False)
-    categoria = models.CharField(max_length=100, choices=CATEGORIAS_OPCOES, default='OUTROS')
+    cor = models.CharField(max_length=7, choices=COLOR_CHOICES, default='#FFCA2C')
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
     status_colecao = models.BooleanField(default=True)
     privacidade_colecao = models.BooleanField(default=False)
@@ -68,7 +90,7 @@ class Colecao(models.Model):
 class Item(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
-    categoria = models.CharField(max_length=100, choices=Colecao.CATEGORIAS_OPCOES, default='OUTROS')
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
     estado = models.CharField(max_length=100, blank=True)
     data_aquisicao = models.DateField(blank=True, null=True)
     valor = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)

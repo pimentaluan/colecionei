@@ -5,13 +5,13 @@
     <section class="menu">
         <nav class="menu_navegacao">
             <a href="{% url 'feed' %}"><img src="{% static 'assets/icones/empilhar.svg' %}"> Feed</a>
-            <a href=""><img src="{% static 'assets/icones/alvo.svg' %}"> Buscar</a>
+            <a href="{% url 'buscar' %}"><img src="{% static 'assets/icones/alvo.svg' %}"> Buscar</a>
             <a href=""><img src="{% static 'assets/icones/trofeu.svg' %}"> Favoritas</a>
             <a href="{% url 'nova-colecao' %}"><img src="{% static 'assets/icones/coroa.svg' %}"> Nova coleção</a>
             {% if user.photo %}
-            <a href=""><img src="{{ user.photo.url }}" id="menu_perfil_photo"> Perfil</a>
+            <a href="{% url 'perfil' user.id%}"><img src="{{ user.photo.url }}" id="menu_perfil_photo"> Perfil</a>
             {% else %}
-            <a href=""><img src="{% static 'assets/icones/usuario.svg' %}"> Perfil</a>
+            <a href="{% url 'perfil' user.id%}"><img src="{% static 'assets/icones/perfil.svg' %}"> Perfil</a>
             {% endif %}
         </nav>
     </section>

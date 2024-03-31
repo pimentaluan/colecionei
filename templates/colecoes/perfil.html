@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/colecoes/Perfil.css' %}">
+    {% if user.nome_completo %}
+    <title>{{user.primeiro_nome}} (@{{user.username }}) • Perfil</title>
+    {% else %}
+    <title>@{{user.first_name}} • Perfil</title>
+    {% endif %}
+</head>
+<body class="corpo">
+    <div>
+        {% include 'partials/_header.html' %}
+    </div>
+
+    <section class="corpo_pagina">
+        <div class="info">
+            <div class='foto_addon'>    
+                {% if user.photo %}
+                <img src="{{ user.photo.url }}" id="foto_perfil">
+                {% else %}
+                <img src="{% static 'assets/icones/perfil.svg' %}" id="foto_perfil">
+                {% endif %}
+            </div>
+            <div class="dados">
+                <h1>@{{ user.username }}</h1>
+                <p>{{ user.nome_completo }}</p>
+                {% if user.bio %}
+                <p>{{ user.bio }}</p>
+                {% else %}
+                {% endif %}
+
+            <div class="stats">
+                {% if quantidade_colecoes == 1 %}
+                <p><span>{{ quantidade_colecoes }}</span> Coleção</p>
+                {% else %}
+                <p><span>{{ quantidade_colecoes }}</span> Coleções</p>
+                {% endif %}
+
+                {% if quantidade_itens == 1 %}
+                <p><span>{{ quantidade_itens }}</span> Item</p>
+                {% else %}
+                <p><span>{{ quantidade_itens }}</span> Itens</p>
+                {% endif %}
+            </div>
+
+            </div>
+        </div>
+
+        <div class="divider d-flex align-items-center my-4">
+            <hr class="text-black flex-grow-1">
+            <p>Coleções</p>
+            <hr class="text-black flex-grow-1">
+        </div>
+        <div>
+            <div class="colecoes">
+                {% for colecao in colecoes %}
+                <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block; width: fit-content;" class="colecao_link">
+                    <div class="colecao_card card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image">
+                        <div class="card-body" style="background-color: {{  colecao.cor }};">
+                            <h3 class="card-title">{{ colecao.nome }}</h3>
+                            <p class="card-text">{{ colecao.descricao }}</p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+            
+    
+</body>
+</html>

@@ -66,7 +66,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 2
+SITE_ID = 3
 
 LOGIN_REDIRECT_URL = '/feed'
 LOGOUT_REDIRECT_URL = '/accounts/login/'

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from colecoes.models import Colecao, Item
+from colecoes.models import Categoria, Colecao, Item
 
 @admin.register(Colecao)
 class ColecaoAdmin(admin.ModelAdmin):
@@ -15,3 +15,8 @@ class ItemAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'descricao')
     date_hierarchy = 'data_aquisicao'
     readonly_fields = ('foto',)
+
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'imagem_padrao')
+    search_fields = ('nome',)

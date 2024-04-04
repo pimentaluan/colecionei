@@ -16,7 +16,36 @@
     </div>
 
     <section class="corpo_pagina">
-        
+        <div class="titulo_pagina">
+            <h1>{{ colecao.nome }}</h1>
+            <p>{{ colecao.descricao }}</p>
+            <div class="row">
+                <div class="col-12 col lg-12">
+                    <h2>Itens</h2>
+                    <div class="row">
+                        {% if colecao.itens %}
+                        {% for item in colecao.itens.all %}
+                        <div class="col-12 col-lg-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ item.foto.url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ item.nome }}</h5>
+                                    {% if item.descricao %}
+                                    <p class="card-text">{{ item.descricao }}</p>
+                                    {% endif %}
+                                    <a href="" class="btn btn-primary">Ver item</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p>Esta coleção ainda não possui itens.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <a href="{% url 'novo-item' username=username colecao_id=colecao_id %}" class="btn btn-warning" style="width: 100%;">Adicionar item</a>
     </section>
 
             

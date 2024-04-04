@@ -23,7 +23,7 @@ def colecao(request, username, colecao_id):
     colecao = get_object_or_404(Colecao, usuario=usuario, id=colecao_id)
 
     icone = icone_aleatorio()
-    return render(request, 'colecoes/colecao.html', {'user': usuario, 'colecao': colecao, 'icone_aleatorio': icone})
+    return render(request, 'colecoes/colecao.html', {'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone})
 
 def nova_colecao(request):
     if not request.user.is_authenticated:

@@ -42,7 +42,6 @@
                 {% else %}
                 <p><span>{{ quantidade_colecoes }}</span> Coleções</p>
                 {% endif %}
-
                 {% if quantidade_itens == 1 %}
                 <p><span>{{ quantidade_itens }}</span> Item</p>
                 {% else %}
@@ -61,17 +60,16 @@
         <div>
             <div class="colecoes">
                 {% for colecao in colecoes %}
-                <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block; width: fit-content;" class="colecao_link">
-                    <div class="colecao_card card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image">
-                        <div class="card-body" style="background-color: {{  colecao.cor }};">
+                    <div class="colecao_card card" style="width: 18rem; display: flex; margin-right: 10px; margin-bottom: 15px;">
+                        <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
+                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
+                        <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
                             <h3 class="card-title">{{ colecao.nome }}</h3>
-                            <p class="card-text">{{ colecao.descricao }}</p>
                         </div>
+                        </a>
                     </div>
-                </a>
                 {% endfor %}
-            </div>
+            </div>                  
         </div>
     </section>
 

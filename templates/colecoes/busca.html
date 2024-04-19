@@ -10,7 +10,7 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/colecoes/Perfil.css' %}">
     {% if user.nome_completo %}
-    <title>{{user.primeiro_nome}} (@{{user.username }}) • Buscar</title>
+    <title>(@{{user.username }}) • Buscar</title>
     {% else %}
     <title>@{{user.first_name}} • Buscar</title>
     {% endif %}
@@ -21,20 +21,20 @@
     </div>
 
     <section class="corpo_pagina">
-        <form action="{% url 'buscar' %}">
-            <input class="busca__input" type="text" name="buscar" placeholder="O que você procura?">
-            <button type="submit">
-                <img class="busca__icone" src="{%static 'assets/ícones/1x/search.png'%}" alt="ícone de search">
+        <form id="form-busca" action="{% url 'buscar' %}" class="form-inline my-2 my-lg-0" style="display: flex;">
+            <input id="input-busca" class="form-control mr-sm-2 busca__input" type="search" name="buscar" placeholder="O que você procura?" aria-label="Buscar">
+            <button class="btn btn-warning my-2 my-sm-0" type="submit" style="width: 50px; margin-left: 10px;">
+                <img class="busca__icone" src="{% static 'assets/icones/lupa.svg' %}" alt="ícone de search">
             </button>
-        </form>   
+        </form>        
 
         <div class="resultados_busca">
             {% for usuario in usuarios %}
-                <div class="card" style="width: 18rem;">
+                <div style="width: 100%; display: flex; background-color: rgb(223, 223, 223); margin-top: 20px; margin-bottom: 10px; padding: 20px;">
                     {% if usuario.photo %}
-                    <img src="{{ usuario.photo.url }}" class="card-img-top" alt="{{ usuario.username }}">
+                    <img src="{{ usuario.photo.url }}" class="card-img-top" alt="{{ usuario.username }}" style="width: 80px; height: 100%; border-radius: 45px;">
                     {% else %}
-                    <img src="{% static 'assets/icones/perfil.svg' %}" class="card-img-top" alt="{{ usuario.username }}">
+                    <img src="{% static 'assets/icones/perfil.svg' %}" class="card-img-top" alt="{{ usuario.username }}" style="width: 70px; height: 100%;">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">@{{ usuario.username }}</h5>
@@ -55,7 +55,6 @@
         </div>
     </section>
 
-            
-    
+
 </body>
 </html>

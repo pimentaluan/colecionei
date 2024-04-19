@@ -41,7 +41,7 @@ def nova_colecao(request):
                 messages.error(request, 'Uma coleção com esse nome já existe para este usuário.')
                 return render(request, 'colecoes/nova_colecao.html', {'user': request.user, 'form': form})
             messages.success(request, 'Coleção criada com sucesso')
-            return redirect('feed')
+            return redirect('perfil', usuario_id=request.user.id)
     else:
         form = ColecaoForms()
     
@@ -63,7 +63,7 @@ def novo_item(request, username, colecao_id):
             item = form.save(commit=False)
             item.colecao = colecao
             item.save()
-            return redirect('feed')
+            return redirect('colecao', username=username, colecao_id=colecao_id)
     else:
         form = ItemForms()
 
@@ -83,7 +83,13 @@ def perfil(request, usuario_id):
     quantidade_itens = itens.count()
     icone = icone_aleatorio()
 
-    return render(request, 'colecoes/perfil.html', {'user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens':quantidade_itens , 'icone_aleatorio': icone})
+    for colecao in colecoes:
+        if colecao.cor in ['#FFCA2C', '#D9C95B', '#D9AA5B', '#D9D2A3', '#A3A3D9']:
+            colecao.texto_preto = True
+        else:
+            colecao.texto_preto = False
+
+    return render(request, 'colecoes/perfil.html', {'user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone})
 
 def icone_aleatorio():
     icones = ['fantasma.svg', 'caveira.svg', 'foguete.svg']

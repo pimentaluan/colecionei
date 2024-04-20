@@ -5,7 +5,7 @@ from .models import Usuario
 class UsuarioAdmin(UserAdmin):
     list_display = ('username', 'email', 'birth_date', 'is_staff')
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('photo', 'birth_date', 'biografia', 'nome_completo','seguidores')}),
+        (None, {'fields': ('photo', 'birth_date', 'biografia', 'nome_completo')}),
     )
 
 admin.site.register(Usuario, UsuarioAdmin)

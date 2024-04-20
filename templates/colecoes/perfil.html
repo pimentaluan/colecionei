@@ -11,7 +11,7 @@
     {% if user.nome_completo %}
     <title>{{user.primeiro_nome}} (@{{user.username }}) • Perfil</title>
     {% else %}
-    <title>@{{user.first_name}} • Perfil</title>
+    <title>{{ user.first_name }} (@{{user.username}}) • Perfil</title>
     {% endif %}
 </head>
 <body class="corpo">
@@ -28,15 +28,20 @@
                 <img src="{% static 'assets/icones/perfil.svg' %}" id="foto_perfil">
                 {% endif %}
             </div>
-            <div class="dados">
+            <div class="dados" style="margin: 0;">
                 <h1>@{{ user.username }}</h1>
+                {% if user.nome_completo %}
                 <p>{{ user.nome_completo }}</p>
+                {% else %}
+                <p>{{ user.first_name }} {{ user.last_name }}</p>
+                {% endif %}
+
                 {% if user.bio %}
                 <p>{{ user.bio }}</p>
                 {% else %}
                 {% endif %}
 
-            <div class="stats">
+            <div class="stats" style="margin: 0;">
                 {% if quantidade_colecoes == 1 %}
                 <p><span>{{ quantidade_colecoes }}</span> Coleção</p>
                 {% else %}
@@ -58,9 +63,9 @@
             <hr class="text-black flex-grow-1">
         </div>
         <div>
-            <div class="colecoes">
+            <div class="colecoes" style="text-align: center; margin: auto;">
                 {% for colecao in colecoes %}
-                    <div class="colecao_card card" style="width: 18rem; display: flex; margin-right: 10px; margin-bottom: 15px;">
+                    <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px;">
                         <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
                         <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
                         <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
@@ -72,8 +77,6 @@
             </div>                  
         </div>
     </section>
-
-            
     
 </body>
 </html>

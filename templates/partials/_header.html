@@ -8,10 +8,18 @@
             <a href="{% url 'buscar' %}"><img src="{% static 'assets/icones/lupa.svg' %}"> Buscar</a>
             <a href=""><img src="{% static 'assets/icones/trofeu.svg' %}"> Favoritas</a>
             <a href="{% url 'nova-colecao' %}"><img src="{% static 'assets/icones/coroa.svg' %}"> Nova coleção</a>
-            {% if user.photo %}
-            <a href="{% url 'perfil' user.id%}"><img src="{{ user.photo.url }}" id="menu_perfil_photo"> Perfil</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'meu-perfil' %}">
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" id="menu_perfil_photo"> Perfil
+                    {% else %}
+                        <img src="{% static 'assets/icones/perfil.svg' %}"> Perfil
+                    {% endif %}
+                </a>
             {% else %}
-            <a href="{% url 'perfil' user.id%}"><img src="{% static 'assets/icones/perfil.svg' %}"> Perfil</a>
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'assets/icones/perfil.svg' %}"> Perfil
+                </a>
             {% endif %}
         </nav>
     </section>

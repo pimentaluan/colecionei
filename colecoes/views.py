@@ -8,22 +8,26 @@ from random import choice
 
 
 def feed(request):
-    user = request.user
-
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
         return redirect('login')
 
+    user = request.user
     icone = icone_aleatorio()
     
     return render(request, 'colecoes/feed.html', {'user': user, 'icone_aleatorio': icone})
 
 def colecao(request, username, colecao_id):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+
+    user = request.user
     usuario = get_object_or_404(Usuario, username=username)
     colecao = get_object_or_404(Colecao, usuario=usuario, id=colecao_id)
 
     icone = icone_aleatorio()
-    return render(request, 'colecoes/colecao.html', {'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone})
+    return render(request, 'colecoes/colecao.html', {'user': user, 'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone})
 
 def nova_colecao(request):
     if not request.user.is_authenticated:
@@ -70,7 +74,7 @@ def novo_item(request, username, colecao_id):
     icone = icone_aleatorio()
     return render(request, 'colecoes/novo_item.html', {'form': form, 'colecao': colecao, 'icone_aleatorio': icone})
 
-def perfil(request, usuario_id):
+def meu_perfil(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
         return redirect('login')
@@ -89,7 +93,28 @@ def perfil(request, usuario_id):
         else:
             colecao.texto_preto = False
 
-    return render(request, 'colecoes/perfil.html', {'user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone})
+    return render(request, 'colecoes/meu-perfil.html', {'user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone})
+
+def perfil(request, usuario_id):
+    user = get_object_or_404(Usuario, pk=usuario_id)
+
+    if request.user != user:
+        colecoes = Colecao.objects.filter(usuario=user)
+        quantidade_colecoes = colecoes.count()
+        itens = Item.objects.filter(colecao__usuario=user)
+        quantidade_itens = itens.count()
+        icone = icone_aleatorio()
+
+        for colecao in colecoes:
+            if colecao.cor in ['#FFCA2C', '#D9C95B', '#D9AA5B', '#D9D2A3', '#A3A3D9']:
+                colecao.texto_preto = True
+            else:
+                colecao.texto_preto = False
+
+        return render(request, 'colecoes/perfil.html', {'other_user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone})
+    else:
+        return meu_perfil(request)
+
 
 def icone_aleatorio():
     icones = ['fantasma.svg', 'caveira.svg', 'foguete.svg']

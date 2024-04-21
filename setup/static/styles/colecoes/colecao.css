@@ -11,13 +11,16 @@ h1, h2, h3, h4, h5, h6{
     display: block;
 }
 
+
 p, a{
-    font-family: "Barlow Semi Condensed", sans-serif!important;
-    font-weight: 400!important;
-    font-style: normal!important;
-    font-size: 1.1rem!important;
-    text-overflow: ellipsis!important;
-    overflow: hidden!important;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
 }
 
 .menu_navegacao a{
@@ -181,7 +184,20 @@ p, a{
 
 
 .card-img-top{
-    object-fit: cover;
-    width: auto;
-    height: 200px;
+    object-fit: cover!important;
+    width: auto!important;
+    height: 200px!important;
+}
+
+.card {
+    height: 350px!important; /* Ajuste este valor conforme necessário */
+    overflow: hidden!important;
+}
+
+.descricao {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de linhas que você deseja exibir */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

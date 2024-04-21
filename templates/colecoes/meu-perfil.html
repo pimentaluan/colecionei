@@ -8,10 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/colecoes/perfil.css' %}">
-    {% if other_user.nome_completo %}
-    <title>{{ other_user.primeiro_nome }} (@{{ other_user.username }}) • Perfil</title>
+    {% if user.nome_completo %}
+    <title>{{user.primeiro_nome}} (@{{user.username }}) • Perfil</title>
     {% else %}
-    <title>{{ other_user.first_name }} (@{{ other_user.username }}) • Perfil</title>
+    <title>{{ user.first_name }} (@{{user.username}}) • Perfil</title>
     {% endif %}
 </head>
 <body class="corpo">
@@ -22,22 +22,22 @@
     <section class="corpo_pagina">
         <div class="info">
             <div class='foto_addon'>    
-                {% if other_user.photo %}
-                <img src="{{ other_user.photo.url }}" id="foto_perfil">
+                {% if user.photo %}
+                <img src="{{ user.photo.url }}" id="foto_perfil">
                 {% else %}
                 <img src="{% static 'assets/icones/perfil.svg' %}" id="foto_perfil">
                 {% endif %}
             </div>
             <div class="dados" style="margin: 0;">
-                <h1>@{{ other_user.username }}</h1>
-                {% if other_user.nome_completo %}
-                <p>{{ other_user.nome_completo }}</p>
+                <h1>@{{ user.username }}</h1>
+                {% if user.nome_completo %}
+                <p>{{ user.nome_completo }}</p>
                 {% else %}
-                <p>{{ other_user.first_name }} {{ other_user.last_name }}</p>
+                <p>{{ user.first_name }} {{ user.last_name }}</p>
                 {% endif %}
 
-                {% if other_user.bio %}
-                <p>{{ other_user.bio }}</p>
+                {% if user.bio %}
+                <p>{{ user.bio }}</p>
                 {% else %}
                 {% endif %}
 
@@ -66,7 +66,7 @@
             <div class="colecoes" style="text-align: center; margin: auto;">
                 {% for colecao in colecoes %}
                     <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px;">
-                        <a href="{% url 'colecao' other_user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
+                        <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
                         <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
                         <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
                             <h3 class="card-title">{{ colecao.nome }}</h3>

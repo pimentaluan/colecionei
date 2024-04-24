@@ -30,20 +30,20 @@
 
         <div class="resultados_busca">
             {% for usuario in usuarios %}
-                <div style="width: 50%; display: flex; background-color: rgb(223, 223, 223); margin-top: 20px; margin-bottom: 10px; padding: 20px; border-radius: 15px;">
+                <div class="clicavel" data-url="{% url 'perfil' usuario.id %}" style="width: 400px; display: flex; background-color: rgb(255, 248, 211); margin-top: 20px; margin-bottom: 10px; padding: 20px; border-radius: 15px;">
                     {% if usuario.photo %}
                         <img src="{{ usuario.photo.url }}" class="card-img-top" alt="{{ usuario.username }}" style="width: 80px; height: 100%; border-radius: 45px;">
                     {% else %}
                         <img src="{% static 'assets/icones/perfil.svg' %}" class="card-img-top" alt="{{ usuario.username }}" style="width: 70px; height: 100%;">
                     {% endif %}
-                    <div class="card-body" style="display: flex; align-items: center;">
+                    <div class="card-body" style="display: flex; align-items: center; justify-content: space-between;">
                         <h5 class="card-title" style="margin-right: 20px; margin-left: 10px;">
-                            <a href="{% url 'perfil' usuario.id %}">@{{ usuario.username }}</a>
+                            @{{ usuario.username }}
                         </h5>
                         {% if not usuario.esta_seguindo %}
-                            <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary">Seguir</a>
+                            <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary stop-propagation">Seguir</a>
                         {% else %}
-                            <a href="{% url 'deixar_seguir_usuario' usuario.id %}" class="btn btn-danger">Deixar de seguir</a>
+                            <a href="{% url 'deixar_seguir_usuario' usuario.id %}" class="btn btn-danger stop-propagation">Deixar de seguir</a>
                         {% endif %}
                     </div>
                 </div>
@@ -55,6 +55,6 @@
         </div>
     </section>
 
-
+    <script src="{% static 'scripts/busca.js' %}"></script>
 </body>
 </html>

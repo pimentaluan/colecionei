@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from colecoes.forms import ColecaoForms, ItemForms
 from usuarios.models import Usuario
-from colecoes.models import Colecao, Item
+from colecoes.models import Colecao, Item, Comentario
 from django.db import IntegrityError
 from random import choice
 
@@ -140,3 +140,22 @@ def buscar(request):
         usuario.esta_seguindo = request.user.esta_seguindo(usuario)
 
     return render(request, 'colecoes/busca.html', {'user': request.user, 'usuarios': usuarios, 'colecoes': colecoes, 'itens': itens, 'icone_aleatorio': icone})
+
+
+def like_colecao(request, colecao_id):
+    colecao = get_object_or_404(Colecao, id=colecao_id)
+    colecao.likes += 1
+    colecao.save()
+    return redirect('colecao', username=request.user.username, colecao_id=colecao_id)
+
+def salvar_colecao(request, colecao_id):
+    colecao = get_object_or_404(Colecao, id=colecao_id)
+    request.user.colecoes_salvas.add(colecao)
+    return redirect('colecao', username=request.user.username, colecao_id=colecao_id)
+
+def comentar_colecao(request, colecao_id):
+    if request.method == 'POST':
+        texto_comentario = request.POST.get('comentario')
+        colecao = get_object_or_404(Colecao, id=colecao_id)
+        Comentario.objects.create(usuario=request.user, colecao=colecao, texto=texto_comentario)
+    return redirect('colecao', username=request.user.username, colecao_id=colecao_id)

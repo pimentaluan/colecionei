@@ -12,10 +12,9 @@ class Usuario(AbstractUser):
     photo = models.ImageField(upload_to=upload_to, blank=True)
     birth_date = models.DateField(blank=True, null=True)
     seguindo = models.ManyToManyField('self', related_name='seguidores', symmetrical=False)
-
+    colecoes_salvas = models.ManyToManyField('colecoes.Colecao', related_name='usuarios_que_salvaram')
     def esta_seguindo(self, usuario):
         return self.seguindo.filter(id=usuario.id).exists()
     
     def primeiro_nome(self):
         return self.nome_completo.split(' ')[0]
-    

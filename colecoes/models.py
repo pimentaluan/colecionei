@@ -81,6 +81,7 @@ class Colecao(models.Model):
     orcamento_colecao = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     localizacao_colecao = models.CharField(max_length=100, blank=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    likes = models.PositiveIntegerField(default=0)
     class Meta:
         unique_together = ('nome', 'usuario',)
 
@@ -100,3 +101,12 @@ class Item(models.Model):
     foto = models.ImageField(upload_to='fotos_itens/', blank=True, null=True)
     notas_adicionais = models.TextField(blank=True)
     colecao = models.ForeignKey(Colecao, related_name='itens', on_delete=models.CASCADE)
+
+class Comentario(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    colecao = models.ForeignKey(Colecao, on_delete=models.CASCADE)
+    texto = models.TextField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comentário de {self.usuario.username} em {self.colecao.nome}'

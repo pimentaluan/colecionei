@@ -65,7 +65,7 @@
         <div>
             <div class="colecoes" style="text-align: center; margin: auto;">
                 {% for colecao in colecoes %}
-                    <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px;">
+                    <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px; margin-right: 20px;">
                         <a href="{% url 'colecao' other_user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
                         <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
                         <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">

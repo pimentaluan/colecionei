@@ -202,16 +202,20 @@ p, a{
     text-overflow: ellipsis;
 }
 
+.btn-group-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .btn-fixed {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    margin-right: 10px;
     width: 60px;
     height: 60px;
-    font-size: 44px;
+    font-size: 34px;
     padding-left: 20px;
     padding-right: 20px;
-    border-radius: 35px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,6 +223,36 @@ p, a{
 }
 
 .btn-fixed:hover {
+    background-color: #FF0049;
+    color: white;
+}
+
+.btn-add-item {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 44px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+}
+
+.btn-add-item:hover {
+    background-color: #FF0049;
+    color: white;
+}
+.btn-fixed.liked {
+    background-color: #FF0049;
+    color: white;
+}
+
+.btn-fixed.saved {
     background-color: #FF0049;
     color: white;
 }

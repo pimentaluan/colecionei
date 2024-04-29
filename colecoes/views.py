@@ -25,9 +25,13 @@ def colecao(request, username, colecao_id):
     user = request.user
     usuario = get_object_or_404(Usuario, username=username)
     colecao = get_object_or_404(Colecao, usuario=usuario, id=colecao_id)
+    likes_count = colecao.get_likes_count()
+
+    user_has_liked = colecao.likes.filter(id=user.id).exists()
+    user_has_saved = request.user.colecoes_salvas.filter(id=colecao_id).exists()
 
     icone = icone_aleatorio()
-    return render(request, 'colecoes/colecao.html', {'user': user, 'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone})
+    return render(request, 'colecoes/colecao.html', {'user': user, 'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone, 'likes_count': likes_count, 'user_has_liked': user_has_liked, 'user_has_saved': user_has_saved})
 
 def nova_colecao(request):
     if not request.user.is_authenticated:
@@ -143,19 +147,34 @@ def buscar(request):
 
 
 def like_colecao(request, colecao_id):
+    user = request.user
     colecao = get_object_or_404(Colecao, id=colecao_id)
-    colecao.likes += 1
-    colecao.save()
-    return redirect('colecao', username=request.user.username, colecao_id=colecao_id)
+
+    user_has_liked = colecao.likes.filter(id=user.id).exists()
+
+    if user_has_liked:
+        colecao.likes.remove(user)
+    else:
+        colecao.likes.add(user)
+
+    return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
 
 def salvar_colecao(request, colecao_id):
+    user = request.user
     colecao = get_object_or_404(Colecao, id=colecao_id)
-    request.user.colecoes_salvas.add(colecao)
-    return redirect('colecao', username=request.user.username, colecao_id=colecao_id)
+
+    user_has_saved = user.colecoes_salvas.filter(id=colecao_id).exists()
+
+    if user_has_saved:
+        user.colecoes_salvas.remove(colecao)
+    else:
+        user.colecoes_salvas.add(colecao)
+
+    return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
 
 def comentar_colecao(request, colecao_id):
+    colecao = get_object_or_404(Colecao, id=colecao_id)
     if request.method == 'POST':
         texto_comentario = request.POST.get('comentario')
-        colecao = get_object_or_404(Colecao, id=colecao_id)
         Comentario.objects.create(usuario=request.user, colecao=colecao, texto=texto_comentario)
-    return redirect('colecao', username=request.user.username, colecao_id=colecao_id)
+    return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)

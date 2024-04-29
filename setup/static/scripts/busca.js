@@ -15,3 +15,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+$(".follow-button").click(function() {
+    var usuario_id = $(this).data("id"); // Obtenha o ID do usuário do atributo data-id do botão
+    $.ajax({
+        url: '/seguir_usuario/' + usuario_id, // Substitua por sua URL correta
+        type: 'POST',
+        success: function(response) {
+            // Atualize o botão ou qualquer outro elemento da página aqui
+            $(this).text('Seguindo');
+        }
+    });
+});
+
+$(".unfollow-button").click(function() {
+    var usuario_id = $(this).data("id"); // Obtenha o ID do usuário do atributo data-id do botão
+    $.ajax({
+        url: '/deixar_seguir_usuario/' + usuario_id, // Substitua por sua URL correta
+        type: 'POST',
+        success: function(response) {
+            // Atualize o botão ou qualquer outro elemento da página aqui
+            $(this).text('Seguir');
+        }
+    });
+});

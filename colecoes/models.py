@@ -81,9 +81,16 @@ class Colecao(models.Model):
     orcamento_colecao = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     localizacao_colecao = models.CharField(max_length=100, blank=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    likes = models.PositiveIntegerField(default=0)
+    likes = models.ManyToManyField(Usuario, related_name='colecoes_curtidas', blank=True)
+
     class Meta:
         unique_together = ('nome', 'usuario',)
+
+    def __str__(self):
+        return self.nome
+
+    def get_likes_count(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.nome

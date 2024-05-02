@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.utils import timezone
 from colecoes.forms import ColecaoForms, ItemForms
 from usuarios.models import Usuario
-from colecoes.models import Colecao, Item, Comentario
+from colecoes.models import Colecao, Item, Comentario, Busca
 from django.db import IntegrityError
 from random import choice
 
@@ -14,8 +15,13 @@ def feed(request):
 
     user = request.user
     icone = icone_aleatorio()
+
+    usuarios_seguidos = user.seguindo.all()
+    colecoes_seguindo = Colecao.objects.filter(usuario__in=usuarios_seguidos).order_by('-data_criacao')
+
     
-    return render(request, 'colecoes/feed.html', {'user': user, 'icone_aleatorio': icone})
+
+    return render(request, 'colecoes/feed.html', {'user': user, 'icone_aleatorio': icone, 'colecoes_seguindo': colecoes_seguindo})
 
 def colecao(request, username, colecao_id):
     if not request.user.is_authenticated:
@@ -134,6 +140,13 @@ def buscar(request):
         usuarios = Usuario.objects.filter(username__icontains=query)
         colecoes = Colecao.objects.filter(nome__icontains=query)
         itens = Item.objects.filter(nome__icontains=query)
+
+        busca = Busca.objects.filter(usuario=request.user, query=query).order_by('-data_hora').first()
+        if busca is None:
+            busca = Busca.objects.create(usuario=request.user, query=query)
+        else:
+            busca.data_hora = timezone.now()
+            busca.save()
     else:
         usuarios = Usuario.objects.none()
         colecoes = Colecao.objects.none()
@@ -143,7 +156,9 @@ def buscar(request):
     for usuario in usuarios:
         usuario.esta_seguindo = request.user.esta_seguindo(usuario)
 
-    return render(request, 'colecoes/busca.html', {'user': request.user, 'usuarios': usuarios, 'colecoes': colecoes, 'itens': itens, 'icone_aleatorio': icone})
+    historico_busca = Busca.objects.filter(usuario=request.user).order_by('-data_hora')
+
+    return render(request, 'colecoes/busca.html', {'user': request.user, 'usuarios': usuarios, 'colecoes': colecoes, 'itens': itens, 'icone_aleatorio': icone, 'historico_busca': historico_busca})
 
 
 def like_colecao(request, colecao_id):

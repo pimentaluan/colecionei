@@ -3,7 +3,7 @@ from . import views
 from colecoes.views import feed, colecao, nova_colecao, novo_item, meu_perfil, perfil, buscar, like_colecao, salvar_colecao, comentar_colecao
 
 urlpatterns = [
-    path('feed/', feed, name='feed'),
+    path('', feed, name='feed'),
     path('buscar', buscar, name='buscar'),
     path('colecao/<str:username>/<int:colecao_id>/', colecao, name='colecao'),
     path('nova-colecao/', nova_colecao, name='nova-colecao'),

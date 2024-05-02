@@ -190,7 +190,7 @@ p, a{
 }
 
 .card {
-    height: 350px!important; /* Ajuste este valor conforme necessário */
+    height: 350px!important;
     overflow: hidden!important;
 }
 
@@ -209,6 +209,7 @@ p, a{
 }
 
 .btn-fixed {
+    position: relative;
     margin-right: 10px;
     width: 60px;
     height: 60px;

@@ -26,9 +26,10 @@
             <button class="btn btn-warning my-2 my-sm-0" type="submit" style="width: 50px; margin-left: 10px;">
                 <img class="busca__icone" src="{% static 'assets/icones/lupa.svg' %}" alt="ícone de search">
             </button>
-        </form>        
-
+        </form>
+        
         <div class="resultados_busca">
+
             {% for usuario in usuarios %}
                 <div class="clicavel" data-url="{% url 'perfil' usuario.id %}" style="width: 400px; display: flex; background-color: rgb(255, 248, 211); margin-top: 20px; margin-bottom: 10px; padding: 20px; border-radius: 15px;">
                     {% if usuario.photo %}
@@ -53,6 +54,19 @@
                 <p>{{ colecao.nome }}</p>
             {% endfor %}
         </div>
+
+        {% if not usuarios and not colecoes and not itens %}
+            <div class="historico_busca">
+                <h2 style="margin-top: 20px;">Buscas recentes</h2>
+                <ul>
+                    {% for busca in historico_busca %}
+                        <div class="busca">
+                            <a href="{% url 'buscar' %}?buscar={{ busca.query }}">{{ busca.query }}</a>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </section>
 
     <script src="{% static 'scripts/busca.js' %}"></script>

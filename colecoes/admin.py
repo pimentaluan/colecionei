@@ -1,5 +1,5 @@
 from django.contrib import admin
-from colecoes.models import Categoria, Colecao, Item, Comentario
+from colecoes.models import Categoria, Colecao, Item, Comentario, Busca
 
 @admin.register(Colecao)
 class ColecaoAdmin(admin.ModelAdmin):
@@ -26,3 +26,8 @@ class ComentarioAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'colecao', 'texto')
     list_filter = ('usuario', 'colecao')
     search_fields = ('texto',)
+
+@admin.register(Busca)
+class BuscaAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'query', 'data_hora')
+    search_fields = ('usuario__username', 'query')

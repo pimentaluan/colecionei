@@ -53,9 +53,9 @@
             </div>
         </div>
         <div class="btn-group-horizontal">
-            <a href="{% url 'like-colecao' colecao_id=colecao_id %}" class="btn btn-warning btn-fixed {% if user_has_liked %}liked{% endif %}" data-bs-toggle="tooltip" data-bs-placement="left" title="Curtir coleção">❤</a>            
-            <a href="{% url 'salvar-colecao' colecao_id=colecao_id %}" class="btn btn-warning btn-fixed {% if user_has_saved %}saved{% endif %}" data-bs-toggle="tooltip" data-bs-placement="left" title="Salvar coleção">💾</a>
-            <a href="{% url 'comentar-colecao' colecao_id=colecao_id %}" class="btn btn-warning btn-fixed" data-bs-toggle="tooltip" data-bs-placement="left" title="Comentar sobre a coleção">💬</a>
+            <a href="{% url 'like-colecao' colecao_id=colecao_id %}" class="btn btn-warning btn-fixed {% if user_has_liked %}liked{% endif %} btn-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Curtir coleção">❤</a>            
+            <a href="{% url 'salvar-colecao' colecao_id=colecao_id %}" class="btn btn-warning btn-fixed {% if user_has_saved %}saved{% endif %} btn-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Salvar coleção">💾</a>
+            <a href="{% url 'comentar-colecao' colecao_id=colecao_id %}" class="btn btn-warning btn-fixed btn-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Comentar sobre a coleção">💬</a>
         </div>
         {% if user == colecao.usuario %}
         <a href="{% url 'novo-item' username=username colecao_id=colecao_id %}" class="btn btn-warning btn-add-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Adicionar item">+</a>        

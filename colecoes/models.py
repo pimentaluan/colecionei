@@ -117,3 +117,8 @@ class Comentario(models.Model):
 
     def __str__(self):
         return f'Comentário de {self.usuario.username} em {self.colecao.nome}'
+    
+class Busca(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    query = models.CharField(max_length=255)
+    data_hora = models.DateTimeField(auto_now_add=True)

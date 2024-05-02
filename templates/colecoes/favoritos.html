@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/colecoes/favoritos.css' %}">
+    <title>{{user.first_name}} (@{{user.username }}) • Feed</title>
+</head>
+<body class="corpo">
+    <div>
+        {% include 'partials/_header.html' %}
+    </div>
+
+    <section class="corpo_pagina">
+        <div>
+            <h2>Coleções favoritas</h2>
+        </div>
+        {% if colecoes_salvas %}
+            <div class="colecoes">
+                {% for colecao in colecoes_salvas %}
+                <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px; margin-right: 20px;">
+                    <a href="{% url 'colecao' colecao.usuario colecao.id %}" style="display: inline-block;" class="colecao_link">
+                    {% if colecao.foto %}
+                        <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
+                    {% else %}
+                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
+                    {% endif %}                    <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
+                    <h3 class="card-title">{{ colecao.nome }}</h3>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="sem-colecoes">Você ainda não salvou nenhuma coleção.</p>
+        {% endif %}
+    </section>
+    
+</body>
+</html>

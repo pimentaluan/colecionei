@@ -8,6 +8,9 @@ from django.db import IntegrityError
 from random import choice
 
 
+def pagina_anterior(request):
+    return request.META.get('HTTP_REFERER')
+
 def feed(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
@@ -37,7 +40,9 @@ def colecao(request, username, colecao_id):
     user_has_saved = request.user.colecoes_salvas.filter(id=colecao_id).exists()
 
     icone = icone_aleatorio()
-    return render(request, 'colecoes/colecao.html', {'user': user, 'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone, 'likes_count': likes_count, 'user_has_liked': user_has_liked, 'user_has_saved': user_has_saved})
+    
+    url_pagina_anterior = pagina_anterior(request)
+    return render(request, 'colecoes/colecao.html', {'user': user, 'username': username, 'colecao_id': colecao_id, 'colecao': colecao, 'icone_aleatorio': icone, 'likes_count': likes_count, 'user_has_liked': user_has_liked, 'user_has_saved': user_has_saved, 'pagina_anterior': url_pagina_anterior})
 
 def nova_colecao(request):
     if not request.user.is_authenticated:
@@ -45,7 +50,7 @@ def nova_colecao(request):
         return redirect('login')
 
     if request.method == 'POST':
-        form = ColecaoForms(request.POST)
+        form = ColecaoForms(request.POST, request.FILES)
         if form.is_valid():
             colecao = form.save(commit=False)
             colecao.usuario = request.user
@@ -120,8 +125,11 @@ def perfil(request, usuario_id):
                 colecao.texto_preto = True
             else:
                 colecao.texto_preto = False
+    
+        url_pagina_anterior = pagina_anterior(request)
 
-        return render(request, 'colecoes/perfil.html', {'other_user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone})
+
+        return render(request, 'colecoes/perfil.html', {'other_user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone, 'pagina_anterior': url_pagina_anterior})
     else:
         return meu_perfil(request)
 
@@ -160,6 +168,16 @@ def buscar(request):
 
     return render(request, 'colecoes/busca.html', {'user': request.user, 'usuarios': usuarios, 'colecoes': colecoes, 'itens': itens, 'icone_aleatorio': icone, 'historico_busca': historico_busca})
 
+def favoritos(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+    
+    user = request.user
+    colecoes_salvas = user.colecoes_salvas.all()
+    icone = icone_aleatorio()
+
+    return render(request, 'colecoes/favoritos.html', {'user': user, 'colecoes_salvas': colecoes_salvas, 'icone_aleatorio': icone})
 
 def like_colecao(request, colecao_id):
     user = request.user

@@ -74,6 +74,7 @@ class Colecao(models.Model):
     descricao = models.TextField()
     cor = models.CharField(max_length=7, choices=COLOR_CHOICES, default='#FFCA2C')
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
+    foto = models.ImageField(upload_to='fotos_colecoes/', blank=True, null=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
     status_colecao = models.BooleanField(default=True)
     privacidade_colecao = models.BooleanField(default=False)

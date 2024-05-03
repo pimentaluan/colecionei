@@ -72,9 +72,12 @@ def logout(request):
 def seguir_usuario(request, usuario_id):
     usuario_a_seguir = get_object_or_404(Usuario, id=usuario_id)
     request.user.seguindo.add(usuario_a_seguir)
+    usuario_a_seguir.seguidores.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def deixar_seguir_usuario(request, usuario_id):
     usuario_a_deixar_de_seguir = get_object_or_404(Usuario, id=usuario_id)
     request.user.seguindo.remove(usuario_a_deixar_de_seguir)
+    
+    usuario_a_deixar_de_seguir.seguidores.remove(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

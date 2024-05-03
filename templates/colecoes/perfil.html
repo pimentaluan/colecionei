@@ -45,17 +45,32 @@
                 {% else %}
                 {% endif %}
 
-            <div class="stats" style="margin: 0;">
-                {% if quantidade_colecoes == 1 %}
-                <p><span>{{ quantidade_colecoes }}</span> Coleção</p>
-                {% else %}
-                <p><span>{{ quantidade_colecoes }}</span> Coleções</p>
-                {% endif %}
-                {% if quantidade_itens == 1 %}
-                <p><span>{{ quantidade_itens }}</span> Item</p>
-                {% else %}
-                <p><span>{{ quantidade_itens }}</span> Itens</p>
-                {% endif %}
+            <div style="display: flex; justify-content: space-between;">
+                <div class="stats" style="margin: 0;">
+                    {% if quantidade_colecoes == 1 %}
+                    <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleção</p>
+                    {% else %}
+                    <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleções</p>
+                    {% endif %}
+                    {% if quantidade_itens == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Item</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Itens</p>
+                    {% endif %}
+                </div>
+
+                <div class="stats" style="margin: 0;">
+                    {% if quantidade_colecoes == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidor</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidores</p>
+                    {% endif %}
+                    {% if quantidade_seguindo == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
+                    {% endif %}
+                </div>
             </div>
 
             </div>

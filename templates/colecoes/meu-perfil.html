@@ -1,4 +1,6 @@
 {% load static %}
+{% load filters %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,17 +43,32 @@
                 {% else %}
                 {% endif %}
 
-            <div class="stats" style="margin: 0;">
-                {% if quantidade_colecoes == 1 %}
-                <p><span>{{ quantidade_colecoes }}</span> Coleção</p>
-                {% else %}
-                <p><span>{{ quantidade_colecoes }}</span> Coleções</p>
-                {% endif %}
-                {% if quantidade_itens == 1 %}
-                <p><span>{{ quantidade_itens }}</span> Item</p>
-                {% else %}
-                <p><span>{{ quantidade_itens }}</span> Itens</p>
-                {% endif %}
+            <div style="display: flex; justify-content: space-between;">
+                <div class="stats" style="margin: 0;">
+                    {% if quantidade_colecoes == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_colecoes|format_number }}</span> Coleção</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_colecoes|format_number }}</span> Coeleções</p>
+                    {% endif %}
+                    {% if quantidade_itens == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_itens|format_number }}</span> Item</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_itens|format_number }}</span> Itens</p>
+                    {% endif %}
+                </div>
+
+                <div class="stats" style="margin: 0;">
+                    {% if quantidade_colecoes == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores</p>
+                    {% endif %}
+                    {% if quantidade_seguindo == 1 %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
+                    {% else %}
+                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
+                    {% endif %}
+                </div>
             </div>
 
             </div>

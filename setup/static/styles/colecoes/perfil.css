@@ -150,7 +150,7 @@ p, a{
 
 .info{
     display: flex;
-    
+    align-items: center;
 }
 
 .foto_addon {
@@ -177,7 +177,6 @@ p, a{
 
 .stats{
     display: flex;
-    justify-content: space-between;
     margin-top: 20px;
 }
 

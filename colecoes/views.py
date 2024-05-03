@@ -101,15 +101,26 @@ def meu_perfil(request):
     itens = Item.objects.filter(colecao__usuario=user)
     quantidade_itens = itens.count()
     icone = icone_aleatorio()
-
+    
     for colecao in colecoes:
         if colecao.cor in ['#FFCA2C', '#D9C95B', '#D9AA5B', '#D9D2A3', '#A3A3D9']:
             colecao.texto_preto = True
         else:
             colecao.texto_preto = False
-
-    return render(request, 'colecoes/meu-perfil.html', {'user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone})
-
+            
+    quantidade_seguindo = user.seguindo.count()
+    quantidade_seguidores = user.seguidores.count()
+        
+    return render(request, 'colecoes/meu-perfil.html', {
+            'other_user': user,
+            'colecoes': colecoes,
+            'quantidade_colecoes': quantidade_colecoes,
+            'quantidade_itens': quantidade_itens,
+            'icone_aleatorio': icone,
+            'quantidade_seguindo': quantidade_seguindo,
+            'quantidade_seguidores': quantidade_seguidores,
+        })
+    
 def perfil(request, usuario_id):
     user = get_object_or_404(Usuario, pk=usuario_id)
 
@@ -128,8 +139,19 @@ def perfil(request, usuario_id):
     
         url_pagina_anterior = pagina_anterior(request)
 
-
-        return render(request, 'colecoes/perfil.html', {'other_user': user, 'colecoes': colecoes, 'quantidade_colecoes': quantidade_colecoes, 'quantidade_itens': quantidade_itens, 'icone_aleatorio': icone, 'pagina_anterior': url_pagina_anterior})
+        quantidade_seguindo = user.seguindo.count()
+        quantidade_seguidores = user.seguidores.count()
+        
+        return render(request, 'colecoes/perfil.html', {
+        'other_user': user,
+        'colecoes': colecoes,
+        'quantidade_colecoes': quantidade_colecoes,
+        'quantidade_itens': quantidade_itens,
+        'icone_aleatorio': icone,
+        'pagina_anterior': url_pagina_anterior,
+        'quantidade_seguindo': quantidade_seguindo,
+        'quantidade_seguidores': quantidade_seguidores,
+    })
     else:
         return meu_perfil(request)
 

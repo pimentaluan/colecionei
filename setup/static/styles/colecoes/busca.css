@@ -100,23 +100,9 @@ p, a{
     overflow: auto;
     display: flex;
     flex-direction: column;
-}
-
-.pagina_anterior {
-    text-decoration: none;
-    color: #FF0049;
-    display: inline;
-    padding: 0;
-    margin: 0;
-    font-weight: 600!important;
-    font-family: "Josefin Sans", sans-serif!important;
-}
-
-.pagina_anterior:hover {
-    transition: 0.15s;
-    color: black;
 
 }
+
 
 .alert-error{
     --bs-alert-color: #842029!important;
@@ -150,54 +136,15 @@ p, a{
 
 .info{
     display: flex;
-    align-items: center;
+    
 }
 
-.foto_addon {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e9f1a1;
+.card_perfil:hover{
+    transition: 0.15s;
+    transform: scale(1.05);
 }
 
-#foto_perfil {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-}
-
-.colecao_link{
+.busca_link{
     text-decoration: none;
     color: #333;
-}
-
-.stats{
-    display: flex;
-    margin-top: 20px;
-}
-
-.stats span{
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.colecoes{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.card-img-top{
-    object-fit: cover;
-    width: auto;
-    height: 200px;
-}
-
-.colecao_card:hover{
-    transform: scale(1.05);
-    transition: 0.3s;
 }

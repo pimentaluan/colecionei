@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'styles/colecoes/perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/colecoes/busca.css' %}">
     {% if user.nome_completo %}
     <title>{{user.primeiro_nome}} (@{{user.username }}) • Buscar</title>
     {% else %}
@@ -31,7 +31,7 @@
         <div class="resultados_busca">
 
             {% for usuario in usuarios %}
-                <div class="clicavel" data-url="{% url 'perfil' usuario.id %}" style="width: 400px; display: flex; background-color: rgb(255, 248, 211); margin-top: 20px; margin-bottom: 10px; padding: 20px; border-radius: 15px;">
+                <div class="clicavel card_perfil" data-url="{% url 'perfil' usuario.id %}" style="width: 400px; display: flex; background-color: rgb(255 239 154); margin-top: 20px; margin-bottom: 10px; padding: 20px; border-radius: 15px;">
                     {% if usuario.photo %}
                         <img src="{{ usuario.photo.url }}" class="card-img-top" alt="{{ usuario.username }}" style="width: 80px; height: 100%; border-radius: 45px;">
                     {% else %}
@@ -58,11 +58,15 @@
         {% if not usuarios and not colecoes and not itens %}
             <div class="historico_busca">
                 <h2 style="margin-top: 20px;">Buscas recentes</h2>
-                <ul>
+                <ul style="padding-left: 0px;">
                     {% for busca in historico_busca %}
-                        <div class="busca">
-                            <a href="{% url 'buscar' %}?buscar={{ busca.query }}">{{ busca.query }}</a>
-                        </div>
+                    <div class="busca">
+                        <a class="busca_link" href="{% url 'buscar' %}?buscar={{ busca.query }}">
+                            <div >
+                                <p>{{ busca.query }}</p>
+                            </div>
+                        </a>
+                    </div>
                     {% endfor %}
                 </ul>
             </div>

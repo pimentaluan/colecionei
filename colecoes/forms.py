@@ -23,13 +23,13 @@ COLOR_CHOICES = [
 class ColecaoForms(forms.ModelForm):
     class Meta:
         model = Colecao
-        exclude = ['status_colecao', 'usuario']
-        fields = ['nome', 'descricao', 'cor', 'categoria', 'status_colecao', 'privacidade_colecao', 'tags', 'orcamento_colecao', 'localizacao_colecao']
+        fields = ['nome', 'descricao', 'cor', 'categoria', 'foto', 'privacidade_colecao', 'tags', 'orcamento_colecao', 'localizacao_colecao']
         labels = {
             'nome': 'Nome',
             'descricao': 'Descrição',
             'cor': 'Cor',
             'categoria': 'Categoria',
+            'foto': 'Foto',
             'privacidade_colecao': 'Privada',
             'tags': 'Tags',
             'orcamento_colecao': 'Orçamento da coleção',
@@ -40,16 +40,12 @@ class ColecaoForms(forms.ModelForm):
             'descricao': forms.Textarea(attrs={'class': 'form-control'}),
             'cor': forms.Select(choices=COLOR_CHOICES, attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
+            'foto': forms.FileInput(attrs={'class': 'form-control'}),
             'privacidade_colecao': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'data_criacao': forms.DateInput(
-                format=('%d/%m/%Y'),
-                attrs={'type': 'date', 'class': 'form-control'}
-            ),
             'tags': forms.TextInput(attrs={'class': 'form-control'}),
             'orcamento_colecao': forms.NumberInput(attrs={'class': 'form-control'}),
             'localizacao_colecao': forms.TextInput(attrs={'class': 'form-control'}),
         }
-
 class ItemForms(forms.ModelForm):
     class Meta:
         model = Item

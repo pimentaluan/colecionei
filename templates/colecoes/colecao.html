@@ -16,6 +16,10 @@
     </div>
 
     <section class="corpo_pagina">
+        <div style="margin-bottom: 20px;">
+            <a href="{{ pagina_anterior }}" class="pagina_anterior">←Voltar</a>
+        </div>
+
         <div class="titulo_pagina">
             <h1>{{ colecao.nome }}</h1>
             <p>{{ colecao.descricao }}</p>
@@ -69,6 +73,7 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+
     </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from django import forms
 from colecoes.models import Colecao, Item
+from usuarios.models import Usuario
 
 COLOR_CHOICES = [
     ('#FFCA2C', 'Amarelo Claro'),
@@ -77,4 +78,25 @@ class ItemForms(forms.ModelForm):
             'ano_fabricacao': forms.TextInput(attrs={'class': 'form-control'}),
             'foto': forms.FileInput(attrs={'class': 'form-control'}),
             'notas_adicionais': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+class EditarPerfilForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['first_name', 'last_name', 'email', 'username', 'photo', 'biografia']
+        labels = {
+            'first_name': 'Nome',
+            'last_name': 'Sobrenome',
+            'email': 'Email',
+            'username': 'Nome de usuário',
+            'photo': 'Foto',
+            'biografia': 'Biografia',
+        }
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control'}),
+            'biografia': forms.Textarea(attrs={'class': 'form-control'}),
         }

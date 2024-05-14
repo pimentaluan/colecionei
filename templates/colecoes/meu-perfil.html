@@ -31,7 +31,12 @@
                 {% endif %}
             </div>
             <div class="dados" style="margin: 0;">
-                <h1>@{{ user.username }}</h1>
+                <div style="display: flex; align-items: center;">
+                    <h1>@{{ user.username }}</h1>
+                    <a href="{% url 'editar_perfil' %}">
+                        <img src="{% static 'assets/icones/editar-perfil.svg' %}" alt="Editar Perfil" style="width: 30px;">
+                    </a>
+                </div>
                 {% if user.nome_completo %}
                 <p>{{ user.nome_completo }}</p>
                 {% else %}

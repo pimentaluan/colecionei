@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from colecoes.views import feed, colecao, nova_colecao, novo_item, favoritos, meu_perfil, perfil, buscar, like_colecao, salvar_colecao, comentar_colecao
+from colecoes.views import feed, colecao, nova_colecao, novo_item, favoritos, meu_perfil, perfil, buscar, like_colecao, salvar_colecao, comentar_colecao, editar_perfil
 
 urlpatterns = [
     path('pagina_anterior/', views.pagina_anterior, name='pagina_anterior'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('favoritos/', favoritos, name='favoritos'),
     path('perfil/', meu_perfil, name='meu-perfil'),
     path('perfil/<int:usuario_id>/', perfil, name='perfil'),
+    path('editar-perfil/', editar_perfil, name='editar_perfil'),
     path('colecao/<int:colecao_id>/like/', views.like_colecao, name='like-colecao'),
     path('colecao/<int:colecao_id>/salvar/', views.salvar_colecao, name='salvar-colecao'),
     path('colecao/<int:colecao_id>/comentar/', views.comentar_colecao, name='comentar-colecao'),

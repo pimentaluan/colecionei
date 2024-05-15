@@ -1,1 +1,1 @@
- web: gunicorn colecionei.wsgi
+ web: gunicorn setup.wsgi

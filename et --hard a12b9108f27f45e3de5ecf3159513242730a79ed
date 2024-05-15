@@ -1,0 +1,242 @@
+[33mcommit a12b9108f27f45e3de5ecf3159513242730a79ed[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Wed May 15 09:41:58 2024 -0300
+
+    outra tentativa, Bucket e vercel
+
+[33mcommit e44da9cc4a1ce712892020d06e3b7cc43d3e993a[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Wed May 15 09:31:17 2024 -0300
+
+    Bucket e vercel
+
+[33mcommit 033f5c55b002c96a2697a411995190cbd1304f82[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Wed May 15 09:26:40 2024 -0300
+
+    Bucket e vercel
+
+[33mcommit 6284ff94b2f9654754378f088903993f411fc6a3[m
+Merge: 8255a66 a444bf1
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Wed May 15 09:11:25 2024 -0300
+
+    Bucket
+
+[33mcommit 8255a66e770210e2b6fc2aad2c9f436ce4e7c631[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Wed May 15 09:08:38 2024 -0300
+
+    Bucket
+
+[33mcommit a444bf1ed4f0051c2cbc3d5124705c05c3e74903[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue May 14 21:47:50 2024 -0300
+
+    vercel
+
+[33mcommit 2d6ff52131568da1f34004da60b783872eff326f[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue May 14 21:38:58 2024 -0300
+
+    sem deploy
+
+[33mcommit 374752ba2884de76f50fc0b0fba9d685520bb588[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue May 14 21:34:47 2024 -0300
+
+    Railway
+
+[33mcommit 10887b1f7e207cd1e96e379c91aeb776234a6ef3[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue May 14 21:23:55 2024 -0300
+
+    Railway
+
+[33mcommit 5d93ffa31bf69c563d9c037902b60ca68983f4b3[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue May 14 21:17:12 2024 -0300
+
+    Railway
+
+[33mcommit 461ad8de29aa0c5e284e8b8fdbb2d18a297f5f11[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue May 14 15:37:02 2024 -0300
+
+    Página de editar perfil
+
+[33mcommit 761bb0f272a3908e66b337efa83127500edb6d64[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Mon May 6 12:18:36 2024 -0300
+
+    Inicio do feed
+
+[33mcommit c60e353185b50a6efed3765aa3accf2401e8ecc9[m
+Merge: 8ecf8cf 6c2d9d9
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sun May 5 22:07:47 2024 -0300
+
+    alterações no banco
+
+[33mcommit 8ecf8cfc5f2895556c06ba19a701c9047b8c4461[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sun May 5 21:13:30 2024 -0300
+
+    alterações no banco
+
+[33mcommit 6c2d9d9d515078807419aaad737443788d8a1937[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Fri May 3 11:47:53 2024 -0300
+
+    Seguidores e seguindo, lógica e exibição no perfil
+
+[33mcommit 99fb0eb787529b0652008bd682d7d26e7fd7a884[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Thu May 2 11:53:08 2024 -0300
+
+    favoritos, botão voltar
+
+[33mcommit adbdd0c26accf1956fc13d1438932a6a36a7fcca[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Wed May 1 22:42:54 2024 -0300
+
+    Melhoria na busca, agora podendo vê o histórico de pesquisa e conseguir manter-se na pesquisa ao seguir um usuário
+
+[33mcommit bc95ccfc7c0c73cfdcfdf15cfe8c48ad5a45b0cc[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sun Apr 28 23:26:40 2024 -0300
+
+    melhoria nas funções de curtir e salvar, com aplicação de css e garantia de funcionamento de contagem de curtidas
+
+[33mcommit dbaf392a11e53377fcbeceb2519b0a7c1f305f29[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sat Apr 27 23:15:55 2024 -0300
+
+    Parte da lógica de curtir, salvar e comentar em uma coleção
+
+[33mcommit 5fa950522ffbc9890939a03b4d01992f1d80743e[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue Apr 23 23:54:28 2024 -0300
+
+    algumas alterações visuais e de funcionamento da busca
+
+[33mcommit 9a0d07d39c11e2e636bdf97a1cbc8321bc99b560[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sun Apr 21 17:06:05 2024 -0300
+
+    lógica de visualização do próprio perfil e do perfil de outros
+
+[33mcommit a5e0f6b88820cff5cc715b6b1587a72d1b69cdb2[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sat Apr 20 01:13:54 2024 -0300
+
+    alterações visuais
+
+[33mcommit 35f3cbbefd242529db427603752e722b2eeb1afb[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Thu Apr 18 22:58:57 2024 -0300
+
+    alterações visuais
+
+[33mcommit 219d14ce02ac5e722f614da56da7189cc5cb626d[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Wed Apr 3 23:41:03 2024 -0300
+
+    Página coleção
+
+[33mcommit 677f86e7f3e967c864b4d9bf39795b8332c98425[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sun Mar 31 02:20:11 2024 -0300
+
+    Alteraçõoes na criação de coleções, itens, páginas para isso e página com lógica de busca. Falta estilização, apenas estilização com bootstrap para testes
+
+[33mcommit 1f00d1e7c0d9efaff87c3d3118b4e0890d02aab7[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sun Mar 31 02:17:57 2024 -0300
+
+    Alteraç~~oes na criação de coleções, itens, páginas para isso, página com lógica de busca, falta estilização, apenas estilização com bootstrap para testes
+
+[33mcommit 72926126c035adacd33a9e97fc1ae839a7a2eb51[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Sat Mar 30 02:22:53 2024 -0300
+
+    Nova coleção e itens
+
+[33mcommit 4a56167d816d3f0a1443c2846f831c045964e080[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Fri Mar 29 00:35:28 2024 -0300
+
+    Models colecão e item
+
+[33mcommit e60ed88f5ed9ab430e3ba6a8b0ab1cb5a121ed3e[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Thu Mar 28 12:44:05 2024 -0300
+
+    inicio do feed, criação do menu
+
+[33mcommit 5145a1bae64bb3cdf1cf181b0c66b19224ee5beb[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Wed Mar 27 11:43:39 2024 -0300
+
+    Inicio do feed
+
+[33mcommit 9b147010ca053e42073b2c72544624c1354b6c51[m
+Author: Luan Pimenta <luan.pimenta@academico.ifpb.edu.br>
+Date:   Tue Mar 26 11:30:50 2024 -0300
+
+    dinamica tela de login, e scrollbar minimalista
+
+[33mcommit baa0ce5d713af9111bbd8f2506bf384971134181[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue Mar 26 01:43:32 2024 -0300
+
+    Icone para com o mouse
+
+[33mcommit ae1bff7298430c43217776fd17292adb05acae3b[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Tue Mar 26 01:38:35 2024 -0300
+
+    Tela de login e cadastro quase toda implementada
+
+[33mcommit c39092282346b138885ed627adf4784419dc13d4[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Mon Mar 25 01:06:42 2024 -0300
+
+    Telas de login e cadastro, com opção de revelar e esconder senha
+
+[33mcommit e3256c72b4e61a4fc6564cfbc1846c8631f87f9a[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Fri Mar 15 22:02:25 2024 -0300
+
+    algumas modificações no login
+
+[33mcommit b95a8f3e44b9d6295ad23ef14f53c1f2b64d7ff2[m
+Merge: 583cb8c ce3e207
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Fri Mar 15 12:21:19 2024 -0300
+
+    Merge branch 'main' of https://github.com/pimentaluan/colecionei
+
+[33mcommit 583cb8ca744735272c5d26b84d188b47a2f8ed31[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Fri Mar 15 12:21:08 2024 -0300
+
+    avanço na tela de login e implementação do google autentication
+
+[33mcommit ce3e207bad39a3944acbf6dffaafd0daee413bb4[m
+Author: Luan Pimenta Fernandes <130945489+pimentaluan@users.noreply.github.com>
+Date:   Fri Mar 15 07:55:10 2024 -0300
+
+    Delete venv directory
+
+[33mcommit 89abfb56a96e58ae347d66d0d65e52b6b9b69f0d[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Thu Mar 14 23:57:25 2024 -0300
+
+    Model publicacao
+
+[33mcommit 904fc912a51b124eb103fce8180ada280484f95d[m
+Author: Luan Pimenta Fernandes <pimentaluan2005@gmail.com>
+Date:   Thu Mar 14 23:43:56 2024 -0300
+
+    Começo do projeto colecionei

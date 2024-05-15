@@ -155,7 +155,8 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_DEFAULT_ACL = 'public-read'
+
+AWS_DEFAULT_ACL = None
 AWS_LOCATION = 'static'
 AWS_QUERYSTRING_AUTH = False
 

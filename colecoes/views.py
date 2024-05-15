@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.utils import timezone
-from colecoes.forms import ColecaoForms, ItemForms
+from colecoes.forms import ColecaoForms, ItemForms, EditarPerfilForm
 from usuarios.models import Usuario
 from colecoes.models import Colecao, Item, Comentario, Busca
 from django.db import IntegrityError
@@ -21,9 +21,7 @@ def feed(request):
 
     usuarios_seguidos = user.seguindo.all()
     colecoes_seguindo = Colecao.objects.filter(usuario__in=usuarios_seguidos).order_by('-data_criacao')
-        
     
-
     return render(request, 'colecoes/feed.html', {'user': user, 'icone_aleatorio': icone})
 
 def colecao(request, username, colecao_id):
@@ -121,6 +119,20 @@ def meu_perfil(request):
             'quantidade_seguidores': quantidade_seguidores,
         })
     
+
+def editar_perfil(request):
+    if request.method == 'POST':
+        form = EditarPerfilForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil atualizado com sucesso')
+            return redirect('meu-perfil')
+        else:
+            messages.error(request, 'Por favor, corrija os erros abaixo.')
+    else:
+        form = EditarPerfilForm(instance=request.user)
+    return render(request, 'colecoes/editar_perfil.html', {'form': form})
+
 def perfil(request, usuario_id):
     user = get_object_or_404(Usuario, pk=usuario_id)
 

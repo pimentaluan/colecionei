@@ -1,0 +1,96 @@
+.corpo{
+    background-color: #EFEFEF!important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+}
+
+.cabecalho{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(0, 0, 0, 0.400);
+    padding: 50px;
+    height: 100vh;
+    flex: 2;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.cabecalho img{
+    width: 150px;
+}
+
+.menu_navegacao{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+.menu_navegacao a{
+    font-family: 'Nunito', sans-serif;
+    font-size: 15pt;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    margin: 20px 0;
+}
+
+.menu_navegacao a:hover{
+    transition: 0.15s;
+    color: #FF0049;
+    transform: scale(1.1);
+}
+.menu_navegacao img{
+    width: 25px;
+    margin-right: 10px;
+}
+
+#menu_perfil_photo{
+    width: 30px;
+    border-radius: 25px;
+}
+
+.corpo_pagina{
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    overflow: auto;
+}
+
+
+
+.alert-error{
+    --bs-alert-color: #842029!important;
+    --bs-alert-bg: #f8d7da!important;;
+    --bs-alert-border-color: #f5c2c7!important;;
+
+}
+
+.alert-success{
+    --bs-alert-color: #0f5132!important;
+    --bs-alert-bg: #d1e7dd!important;
+    --bs-alert-border-color: #badbcc!important;
+}
+.alert{
+    --bs-alert-bg: transparent;
+    --bs-alert-padding-x: 1rem;
+    --bs-alert-padding-y: 1rem;
+    --bs-alert-margin-bottom: 1rem;
+    --bs-alert-color: inherit;
+    --bs-alert-border-color: transparent;
+    --bs-alert-border: 1px solid var(--bs-alert-border-color);
+    --bs-alert-border-radius: 0.375rem;
+    position: relative;
+    padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+    margin-bottom: var(--bs-alert-margin-bottom);
+    color: var(--bs-alert-color);
+    background-color: var(--bs-alert-bg);
+    border: var(--bs-alert-border);
+    border-radius: var(--bs-alert-border-radius);
+}

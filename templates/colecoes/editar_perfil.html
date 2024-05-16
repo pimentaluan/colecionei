@@ -11,9 +11,10 @@
     <title>{{user.first_name}} (@{{user.username }}) • Editar Perfil</title>
 </head>
 <body class="corpo">
-    <div>
+    <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
     </div>
+
 
     <section class="corpo_pagina">
         <div class="titulo_pagina">
@@ -36,6 +37,8 @@
                 </div>
             </form>
     </section>
-
+    <div id="menu-celular">
+        {% include 'partials/_header_celular.html' %}
+    </div>
 </body>
 </html>

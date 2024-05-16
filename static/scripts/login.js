@@ -3,10 +3,10 @@ function MostrarSenha() {
     var olho = document.getElementById("olho");
     if (senha.type === "password") {
         senha.type = "text";
-        olho.src = "static/assets/icones/hide.png";
+        olho.src = "staticassets/icones/hide.png";
     } else {
         senha.type = "password";
-        olho.src = "static/assets/icones/view.png";
+        olho.src = "staticassets/icones/view.png";
     }
 }
 

@@ -11,7 +11,7 @@
     <title>{{user.first_name}} (@{{user.username }}) • Novo Item</title>
 </head>
 <body class="corpo">
-    <div>
+    <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
     </div>
 
@@ -36,6 +36,8 @@
                 </div>
             </form>
     </section>
-
+    <div id="menu-celular">
+        {% include 'partials/_header_celular.html' %}
+    </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
     <title>{{ colecao.nome}} • @{{user.username }}</title>
 </head>
 <body class="corpo">
-    <div>
+    <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
     </div>
 
@@ -64,8 +64,11 @@
         {% if user == colecao.usuario %}
         <a href="{% url 'novo-item' username=username colecao_id=colecao_id %}" class="btn btn-warning btn-add-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Adicionar item">+</a>        
         {% endif %}
-    </section>          
-    
+    </section>   
+
+    <div id="menu-celular">
+        {% include 'partials/_header_celular.html' %}
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-8i/UT5CGRg5BdPtF+to6xT6d+2xg6Cso2z4Ck5BdPtF+to6xT6d+2xg6Cso2z4Ck5BdPtF" crossorigin="anonymous"></script>
     <script>

@@ -1,0 +1,32 @@
+{%load static%}
+<style>
+    .icon {
+    width: 35px; /* Ajuste conforme necessário */
+    height: 38px;
+    fill: #333; /* Altere para a cor desejada */
+}
+</style>
+<header class="cabecalho_celular">
+    <section class="menu">
+        <nav class="menu_navegacao_celular">
+            <a href="{% url 'feed' %}"><img src="{% static 'assets/icones/empilhar.svg' %}"></a>
+            <a href="{% url 'buscar' %}"><img src="{% static 'assets/icones/lupa.svg' %}"> </a>
+            <a href="{% url 'favoritos' %}"><img src="{% static 'assets/icones/trofeu.svg' %}"> </a>
+            <a href="{% url 'nova-colecao' %}"><img src="{% static 'assets/icones/coroa.svg' %}"></a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'meu-perfil' %}">
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" id="menu_perfil_photo">
+                    {% else %}
+                        <img src="{% static 'assets/icones/perfil.svg' %}"></img>
+                    {% endif %}
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'assets/icones/perfil.svg' %}">
+                </a>
+            {% endif %}
+        </nav>
+    </section>
+</header>
+<main class="principal">

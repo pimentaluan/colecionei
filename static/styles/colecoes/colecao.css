@@ -70,7 +70,8 @@ p, a{
     margin-top: 60px;
 }
 
-.menu_navegacao a{
+.menu_navegacao a span {
+    color: #333; 
     font-family: 'Nunito', sans-serif;
     font-size: 15pt;
     font-weight: bold;

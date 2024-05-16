@@ -16,7 +16,7 @@
     {% endif %}
 </head>
 <body class="corpo">
-    <div>
+    <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
     </div>
 
@@ -72,7 +72,10 @@
             </div>
         {% endif %}
     </section>
-
+    
+    <div id="menu-celular">
+        {% include 'partials/_header_celular.html' %}
+    </div>
     <script src="{% static 'scripts/busca.js' %}"></script>
 </body>
 </html>

@@ -53,8 +53,8 @@ p, a{
     
 }
 
-.cabecalho-escondido {
-    display: none !important;
+.cabecalho_celular {
+    display: none;
 }
 
 .cabecalho img{
@@ -148,4 +148,104 @@ p, a{
 .busca_link{
     text-decoration: none;
     color: #333;
+}
+
+
+
+@media (max-width: 1263px) {
+    .cabecalho {
+        width: 70px;
+        padding: 0;
+        align-items: center;
+        transition: width 0.5s ease, padding 0.5s ease;
+    }
+
+    .menu_navegacao {
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .menu_navegacao a span {
+        display: none;
+    }
+
+    .menu_navegacao img {
+        margin-right: 0;
+        transition: margin-right 0.5s ease;
+    }
+
+    .icon{
+        margin-top: 40px;
+        width: 50px!important;
+        transition: width 0.5s ease, padding 0.5s ease;
+    }
+}
+
+@media (max-width: 768px) {
+    .corpo_pagina{
+        margin-top: 98px;
+    }
+    #meu-cabecalho {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 100;
+        height: fit-content;
+    }
+
+    .cabecalho{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 100;
+        height: fit-content;
+        display: block;
+        padding: 20px 10px 20px 10px;
+        background-color: #EFEFEF;
+        border-right: 0;
+        border-bottom: 1px solid #33333350;
+        text-align: center;
+        transition: none;
+    }
+    
+    #meu-cabecalho section{
+        display: none;
+    }
+
+    #menu-celular {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .menu_navegacao_celular {
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+    }
+
+    .menu_navegacao img {
+        width: 25px;
+        margin-right: 10px;
+    }
+
+
+    .cabecalho_celular img{
+        width: 35px;
+    }
+
+    .cabecalho_celular{
+        display: block;
+        padding: 20px 10px 20px 10px;
+        border-top: 1px solid #33333350;
+        background-color: #EFEFEF;
+    }
 }

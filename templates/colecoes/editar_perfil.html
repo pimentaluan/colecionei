@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/imagens/icon.svg' %}"/>
     <title>{{user.first_name}} (@{{user.username }}) • Editar Perfil</title>
 </head>
+
 <body class="corpo">
     <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
@@ -38,7 +41,8 @@
             </form>
     </section>
     <div id="menu-celular">
-        {% include 'partials/_header_celular.html' %}
+        {% include 'partials/_footer_celular.html' %}
     </div>
 </body>
+
 </html>

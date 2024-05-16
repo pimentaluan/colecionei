@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/colecoes/perfil.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/imagens/icon.svg' %}"/>
     {% if other_user.nome_completo %}
     <title>{{ other_user.primeiro_nome }} (@{{ other_user.username }}) • Perfil</title>
     {% else %}
     <title>{{ other_user.first_name }} (@{{ other_user.username }}) • Perfil</title>
     {% endif %}
 </head>
+
 <body class="corpo">
     <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
@@ -25,7 +28,7 @@
         </div>
 
         <div class="info">
-            <div class='foto_addon'>    
+            <div class='foto_addon'>
                 {% if other_user.photo %}
                 <img src="{{ other_user.photo.url }}" id="foto_perfil">
                 {% else %}
@@ -45,33 +48,33 @@
                 {% else %}
                 {% endif %}
 
-            <div style="display: flex; justify-content: space-between;">
-                <div class="stats" style="margin: 0;">
-                    {% if quantidade_colecoes == 1 %}
-                    <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleção</p>
-                    {% else %}
-                    <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleções</p>
-                    {% endif %}
-                    {% if quantidade_itens == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Item</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Itens</p>
-                    {% endif %}
-                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="stats" style="margin: 0;">
+                        {% if quantidade_colecoes == 1 %}
+                        <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleção</p>
+                        {% else %}
+                        <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleções</p>
+                        {% endif %}
+                        {% if quantidade_itens == 1 %}
+                        <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Item</p>
+                        {% else %}
+                        <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Itens</p>
+                        {% endif %}
+                    </div>
 
-                <div class="stats" style="margin: 0;">
-                    {% if quantidade_colecoes == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidor</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidores</p>
-                    {% endif %}
-                    {% if quantidade_seguindo == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
-                    {% endif %}
+                    <div class="stats" style="margin: 0;">
+                        {% if quantidade_colecoes == 1 %}
+                        <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidor</p>
+                        {% else %}
+                        <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidores</p>
+                        {% endif %}
+                        {% if quantidade_seguindo == 1 %}
+                        <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
+                        {% else %}
+                        <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
 
             </div>
         </div>
@@ -84,24 +87,29 @@
         <div>
             <div class="colecoes" style="text-align: center; margin: auto;">
                 {% for colecao in colecoes %}
-                    <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px; margin-right: 20px;">
-                        <a href="{% url 'colecao' other_user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
+                <div class="colecao_card card"
+                    style="width: 18rem; display: flex; margin-bottom: 15px; margin-right: 20px;">
+                    <a href="{% url 'colecao' other_user.username colecao.id %}" style="display: inline-block;"
+                        class="colecao_link">
                         {% if colecao.foto %}
-                            <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
+                        <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
                         {% else %}
-                            <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
+                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image"
+                            style="width: 100%;">
                         {% endif %}
-                        <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
+                        <div class="card-body"
+                            style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
                             <h3 class="card-title">{{ colecao.nome }}</h3>
                         </div>
-                        </a>
-                    </div>
+                    </a>
+                </div>
                 {% endfor %}
-            </div>                  
+            </div>
         </div>
     </section>
     <div id="menu-celular">
-        {% include 'partials/_header_celular.html' %}
+        {% include 'partials/_footer_celular.html' %}
     </div>
 </body>
+
 </html>

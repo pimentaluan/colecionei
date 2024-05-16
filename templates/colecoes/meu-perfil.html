@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/colecoes/perfil.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/imagens/icon.svg' %}"/>
     {% if user.nome_completo %}
     <title>{{user.primeiro_nome}} (@{{user.username }}) • Perfil</title>
     {% else %}
     <title>{{ user.first_name }} (@{{user.username}}) • Perfil</title>
     {% endif %}
 </head>
+
 <body class="corpo">
     <div id="meu-cabecalho">
         {% include 'partials/_header.html' %}
@@ -23,7 +26,7 @@
 
     <section class="corpo_pagina">
         <div class="info">
-            <div class='foto_addon'>    
+            <div class='foto_addon'>
                 {% if user.photo %}
                 <img src="{{ user.photo.url }}" id="foto_perfil">
                 {% else %}
@@ -31,49 +34,55 @@
                 {% endif %}
             </div>
             <div class="dados" style="margin: 0;">
-                <div style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center; " class="username">
                     <h1>@{{ user.username }}</h1>
-                    <a href="{% url 'editar_perfil' %}">
-                        <img src="{% static 'assets/icones/editar-perfil.svg' %}" alt="Editar Perfil" style="width: 30px;">
-                    </a>
+                    <div id="editar_perfil">
+                        <a href="{% url 'editar_perfil' %}"> Editar perfil</a>
+                    </div>
                 </div>
+
+                <div style="display: flex; justify-content: space-between;" class="numeros">
+                    <div class="stats" style="margin: 0;">
+                        {% if quantidade_colecoes == 1 %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_colecoes|format_number }}</span> Coleção</p>
+                        {% else %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_colecoes|format_number }}</span> Coeleções
+                        </p>
+                        {% endif %}
+                        {% if quantidade_itens == 1 %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_itens|format_number }}</span> Item</p>
+                        {% else %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_itens|format_number }}</span> Itens</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="stats" style="margin: 0;">
+                        {% if quantidade_colecoes == 1 %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor
+                        </p>
+                        {% else %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores
+                        </p>
+                        {% endif %}
+                        {% if quantidade_seguindo == 1 %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
+                        {% else %}
+                        <p style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+            <div>
                 {% if user.nome_completo %}
-                <p>{{ user.nome_completo }}</p>
+                <p style="font-weight: 600; font-size: 20px;">{{ user.nome_completo }}</p>
                 {% else %}
-                <p>{{ user.first_name }} {{ user.last_name }}</p>
+                <p style="font-weight: 600; font-size: 20px;">{{ user.first_name }} {{ user.last_name }}</p>
                 {% endif %}
 
                 {% if user.bio %}
                 <p>{{ user.bio }}</p>
                 {% else %}
                 {% endif %}
-
-            <div style="display: flex; justify-content: space-between;">
-                <div class="stats" style="margin: 0;">
-                    {% if quantidade_colecoes == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_colecoes|format_number }}</span> Coleção</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_colecoes|format_number }}</span> Coeleções</p>
-                    {% endif %}
-                    {% if quantidade_itens == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_itens|format_number }}</span> Item</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_itens|format_number }}</span> Itens</p>
-                    {% endif %}
-                </div>
-
-                <div class="stats" style="margin: 0;">
-                    {% if quantidade_colecoes == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores</p>
-                    {% endif %}
-                    {% if quantidade_seguindo == 1 %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
-                    {% else %}
-                    <p style="margin-right: 20px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
-                    {% endif %}
-                </div>
             </div>
 
             </div>
@@ -87,24 +96,29 @@
         <div>
             <div class="colecoes" style="text-align: center; margin: auto;">
                 {% for colecao in colecoes %}
-                <div class="colecao_card card" style="width: 18rem; display: flex; margin-bottom: 15px; margin-right: 20px;">
-                    <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block;" class="colecao_link">
+                <div class="colecao_card card"
+                    style="width: 18rem; display: flex; margin-bottom: 15px; margin-right: 20px;">
+                    <a href="{% url 'colecao' user.username colecao.id %}" style="display: inline-block;"
+                        class="colecao_link">
                         {% if colecao.foto %}
-                            <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
+                        <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
                         {% else %}
-                            <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image" style="width: 100%;">
+                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image"
+                            style="width: 100%;">
                         {% endif %}
-                        <div class="card-body" style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
+                        <div class="card-body"
+                            style="background-color: {{ colecao.cor }}; {% if colecao.texto_preto %} color: #000000; {% else %} color: #FFFFFF; {% endif %}">
                             <h3 class="card-title">{{ colecao.nome }}</h3>
                         </div>
-                        </a>
-                    </div>
+                    </a>
+                </div>
                 {% endfor %}
-            </div>                  
+            </div>
         </div>
     </section>
     <div id="menu-celular">
-        {% include 'partials/_header_celular.html' %}
+        {% include 'partials/_footer_celular.html' %}
     </div>
 </body>
+
 </html>

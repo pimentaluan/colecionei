@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -12,7 +17,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-p, a{
+p,
+a {
     font-family: "Barlow Semi Condensed", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -23,7 +29,7 @@ p, a{
     display: block;
 }
 
-.menu_navegacao a{
+.menu_navegacao a {
     font-family: 'Nunito', sans-serif !important;
     font-size: 15pt !important;
     font-weight: bold !important;
@@ -32,7 +38,7 @@ p, a{
     margin: 20px 0 !important;
 }
 
-.corpo{
+.corpo {
     background-color: #EFEFEF;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -43,7 +49,7 @@ p, a{
     display: flex;
 }
 
-.cabecalho{
+.cabecalho {
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -53,24 +59,25 @@ p, a{
     flex: 2;
     position: relative;
     overflow: hidden;
-    
+
 }
+
 .cabecalho_celular {
     display: none;
 }
 
-.cabecalho img{
+.cabecalho img {
     width: 150px;
 }
 
-.menu_navegacao{
+.menu_navegacao {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
 }
 
 .menu_navegacao a span {
-    color: #333; 
+    color: #333;
     font-family: 'Nunito', sans-serif;
     font-size: 15pt;
     font-weight: bold;
@@ -80,22 +87,25 @@ p, a{
 }
 
 
-.menu_navegacao a:hover{
+.menu_navegacao a:hover {
     transition: 0.15s;
     color: #FF0049;
     transform: scale(1.1);
 }
-.menu_navegacao img{
+
+.menu_navegacao img {
     width: 25px;
     margin-right: 10px;
 }
 
-#menu_perfil_photo{
-    width: 30px;
+#menu_perfil_photo {
+    width: 35px;
+    height: 35px;
     border-radius: 25px;
+    object-fit: cover;
 }
 
-.corpo_pagina{
+.corpo_pagina {
     width: 100%;
     height: 100vh;
     padding-left: 6%;
@@ -113,8 +123,8 @@ p, a{
     display: inline;
     padding: 0;
     margin: 0;
-    font-weight: 600!important;
-    font-family: "Josefin Sans", sans-serif!important;
+    font-weight: 600 !important;
+    font-family: "Josefin Sans", sans-serif !important;
 }
 
 .pagina_anterior:hover {
@@ -123,19 +133,22 @@ p, a{
 
 }
 
-.alert-error{
-    --bs-alert-color: #842029!important;
-    --bs-alert-bg: #f8d7da!important;;
-    --bs-alert-border-color: #f5c2c7!important;;
+.alert-error {
+    --bs-alert-color: #842029 !important;
+    --bs-alert-bg: #f8d7da !important;
+    ;
+    --bs-alert-border-color: #f5c2c7 !important;
+    ;
 
 }
 
-.alert-success{
-    --bs-alert-color: #0f5132!important;
-    --bs-alert-bg: #d1e7dd!important;
-    --bs-alert-border-color: #badbcc!important;
+.alert-success {
+    --bs-alert-color: #0f5132 !important;
+    --bs-alert-bg: #d1e7dd !important;
+    --bs-alert-border-color: #badbcc !important;
 }
-.alert{
+
+.alert {
     --bs-alert-bg: transparent;
     --bs-alert-padding-x: 1rem;
     --bs-alert-padding-y: 1rem;
@@ -153,9 +166,9 @@ p, a{
     border-radius: var(--bs-alert-border-radius);
 }
 
-.info{
+.info {
     display: flex;
-    
+
 }
 
 .foto_addon {
@@ -173,25 +186,26 @@ p, a{
     width: 100px;
     height: 100px;
     border-radius: 100px;
+    object-fit: cover;
 }
 
-.colecao_link{
+.colecao_link {
     text-decoration: none;
     color: #333;
 }
 
-.stats{
+.stats {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.stats span{
+.stats span {
     font-size: 20px;
     font-weight: bold;
 }
 
-.colecoes{
+.colecoes {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
@@ -199,15 +213,15 @@ p, a{
 }
 
 
-.card-img-top{
-    object-fit: cover!important;
-    width: auto!important;
-    height: 200px!important;
+.card-img-top {
+    object-fit: cover !important;
+    width: auto !important;
+    height: 200px !important;
 }
 
 .card {
-    height: 350px!important;
-    overflow: hidden!important;
+    height: 350px !important;
+    overflow: hidden !important;
 }
 
 .descricao {
@@ -264,6 +278,7 @@ p, a{
     background-color: #FF0049;
     color: white;
 }
+
 .btn-fixed.liked {
     background-color: #FF0049;
     color: white;
@@ -276,7 +291,7 @@ p, a{
 
 
 
-@media (max-width: 1263px) {
+@media screen and (max-width: 1263px) {
     .cabecalho {
         width: 70px;
         padding: 0;
@@ -298,18 +313,20 @@ p, a{
         transition: margin-right 0.5s ease;
     }
 
-    .icon{
+    .icon {
         margin-top: 40px;
-        width: 50px!important;
+        width: 50px !important;
         transition: width 0.5s ease, padding 0.5s ease;
     }
 }
 
-@media (max-width: 768px) {
-    .corpo_pagina{
+@media screen and (max-width: 768px) {
+    .corpo_pagina {
         margin-top: 98px;
     }
-    #meu-cabecalho {
+
+    #meu-cabecalho-celular {
+        display: block;
         position: fixed;
         top: 0;
         left: 0;
@@ -319,7 +336,13 @@ p, a{
         height: fit-content;
     }
 
-    .cabecalho{
+    #meu-cabecalho {
+        display: none;
+    }
+
+    .cabecalho {
+        display: flex;
+        flex-direction: row;
         position: fixed;
         top: 0;
         left: 0;
@@ -327,16 +350,14 @@ p, a{
         width: 100%;
         z-index: 100;
         height: fit-content;
-        display: block;
         padding: 20px 10px 20px 10px;
         background-color: #EFEFEF;
         border-right: 0;
         border-bottom: 1px solid #33333350;
-        text-align: center;
         transition: none;
     }
-    
-    #meu-cabecalho section{
+
+    #meu-cabecalho section {
         display: none;
     }
 
@@ -362,11 +383,11 @@ p, a{
     }
 
 
-    .cabecalho_celular img{
-        width: 35px;
+    .cabecalho_celular img {
+        width: 25px;
     }
 
-    .cabecalho_celular{
+    .cabecalho_celular {
         display: block;
         padding: 20px 10px 20px 10px;
         border-top: 1px solid #33333350;

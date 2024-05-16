@@ -72,7 +72,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = int(os.getenv('SITE_ID', '1'))
+SITE_ID = int(os.getenv('SITE_ID', '4'))
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'

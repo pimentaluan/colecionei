@@ -174,7 +174,9 @@ else:
 
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
     STATIC_ROOT = 'staticfiles'
-
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'setup/static')
+    ]
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type

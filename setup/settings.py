@@ -157,6 +157,7 @@ if BRANCH_NAME == 'develop':
 
     MEDIA_URL = "/fotos/"
     MEDIA_ROOT = os.path.join(BASE_DIR, 'fotos')
+    
 else:
     # Configurações para a branch de deploy
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

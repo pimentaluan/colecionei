@@ -13,7 +13,7 @@ class Usuario(AbstractUser):
     birth_date = models.DateField(blank=True, null=True)
     seguindo = models.ManyToManyField('self', related_name='+', symmetrical=False, blank=True)
     seguidores = models.ManyToManyField('self', related_name='+', symmetrical=False, blank=True)
-    colecoes_salvas = models.ManyToManyField('colecoes.Colecao', related_name='usuarios_que_salvaram')
+    colecoes_salvas = models.ManyToManyField('colecoes.Colecao', related_name='usuarios_que_salvaram', blank=True)
     def esta_seguindo(self, usuario):
         return self.seguindo.filter(id=usuario.id).exists()
     

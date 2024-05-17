@@ -25,17 +25,16 @@ def feed(request):
     return render(request, 'colecoes/feed.html', {'user': user, 'icone_aleatorio': icone})
 
 def colecao(request, username, colecao_id):
-    if not request.user.is_authenticated:
-        messages.error(request, 'Usuário não logado')
-        return redirect('login')
-
     user = request.user
     usuario = get_object_or_404(Usuario, username=username)
     colecao = get_object_or_404(Colecao, usuario=usuario, id=colecao_id)
     likes_count = colecao.get_likes_count()
 
-    user_has_liked = colecao.likes.filter(id=user.id).exists()
-    user_has_saved = request.user.colecoes_salvas.filter(id=colecao_id).exists()
+    user_has_liked = False
+    user_has_saved = False
+    if user.is_authenticated:
+        user_has_liked = colecao.likes.filter(id=user.id).exists()
+        user_has_saved = user.colecoes_salvas.filter(id=colecao_id).exists()
 
     icone = icone_aleatorio()
     
@@ -67,6 +66,9 @@ def nova_colecao(request):
     return render(request, 'colecoes/nova_colecao.html', {'user': request.user, 'form': form, 'icone_aleatorio': icone})
 
 def novo_item(request, username, colecao_id):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
     usuario = get_object_or_404(Usuario, username=username)
     colecao = get_object_or_404(Colecao, usuario=usuario, id=colecao_id)
 
@@ -120,9 +122,13 @@ def meu_perfil(request):
         })
     
 
-def editar_perfil(request):
+def editar_perfil(request, username):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+    user = get_object_or_404(Usuario, username=username)
     if request.method == 'POST':
-        form = EditarPerfilForm(request.POST, request.FILES, instance=request.user)
+        form = EditarPerfilForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             messages.success(request, 'Perfil atualizado com sucesso')
@@ -130,16 +136,16 @@ def editar_perfil(request):
         else:
             messages.error(request, 'Por favor, corrija os erros abaixo.')
     else:
-        form = EditarPerfilForm(instance=request.user)
+        form = EditarPerfilForm(instance=user)
     return render(request, 'colecoes/editar_perfil.html', {'form': form})
 
-def perfil(request, usuario_id):
-    user = get_object_or_404(Usuario, pk=usuario_id)
-
-    if request.user != user:
-        colecoes = Colecao.objects.filter(usuario=user)
+def perfil(request, username):
+    user = request.user
+    other_user = get_object_or_404(Usuario, username=username)
+    if request.user != other_user:
+        colecoes = Colecao.objects.filter(usuario=other_user)
         quantidade_colecoes = colecoes.count()
-        itens = Item.objects.filter(colecao__usuario=user)
+        itens = Item.objects.filter(colecao__usuario=other_user)
         quantidade_itens = itens.count()
         icone = icone_aleatorio()
 
@@ -151,22 +157,26 @@ def perfil(request, usuario_id):
     
         url_pagina_anterior = pagina_anterior(request)
 
-        quantidade_seguindo = user.seguindo.count()
-        quantidade_seguidores = user.seguidores.count()
+        quantidade_seguindo = other_user.seguindo.count()
+        quantidade_seguidores = other_user.seguidores.count()
+
+        esta_seguindo = False
+        if request.user.is_authenticated:
+            esta_seguindo = request.user.esta_seguindo(other_user)
         
         return render(request, 'colecoes/perfil.html', {
-        'other_user': user,
-        'colecoes': colecoes,
-        'quantidade_colecoes': quantidade_colecoes,
-        'quantidade_itens': quantidade_itens,
-        'icone_aleatorio': icone,
-        'pagina_anterior': url_pagina_anterior,
-        'quantidade_seguindo': quantidade_seguindo,
-        'quantidade_seguidores': quantidade_seguidores,
-    })
+            'other_user': other_user,
+            'colecoes': colecoes,
+            'quantidade_colecoes': quantidade_colecoes,
+            'quantidade_itens': quantidade_itens,
+            'icone_aleatorio': icone,
+            'pagina_anterior': url_pagina_anterior,
+            'quantidade_seguindo': quantidade_seguindo,
+            'quantidade_seguidores': quantidade_seguidores,
+            'esta_seguindo': esta_seguindo,
+        })
     else:
         return meu_perfil(request)
-
 
 def icone_aleatorio():
     icones = ['fantasma.svg', 'caveira.svg', 'foguete.svg']
@@ -200,7 +210,10 @@ def buscar(request):
 
     historico_busca = Busca.objects.filter(usuario=request.user).order_by('-data_hora')
 
-    return render(request, 'colecoes/busca.html', {'user': request.user, 'usuarios': usuarios, 'colecoes': colecoes, 'itens': itens, 'icone_aleatorio': icone, 'historico_busca': historico_busca})
+    quantidade_seguindo = request.user.seguindo.count()
+    quantidade_seguidores = request.user.seguidores.count()
+    
+    return render(request, 'colecoes/busca.html', {'user': request.user, 'usuarios': usuarios, 'quantidade_seguindo': quantidade_seguindo, 'quantidade_seguidores': quantidade_seguidores, 'colecoes': colecoes, 'itens': itens, 'icone_aleatorio': icone, 'historico_busca': historico_busca})
 
 def favoritos(request):
     if not request.user.is_authenticated:
@@ -214,6 +227,10 @@ def favoritos(request):
     return render(request, 'colecoes/favoritos.html', {'user': user, 'colecoes_salvas': colecoes_salvas, 'icone_aleatorio': icone})
 
 def like_colecao(request, colecao_id):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+    
     user = request.user
     colecao = get_object_or_404(Colecao, id=colecao_id)
 
@@ -227,6 +244,9 @@ def like_colecao(request, colecao_id):
     return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
 
 def salvar_colecao(request, colecao_id):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
     user = request.user
     colecao = get_object_or_404(Colecao, id=colecao_id)
 
@@ -240,6 +260,9 @@ def salvar_colecao(request, colecao_id):
     return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
 
 def comentar_colecao(request, colecao_id):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
     colecao = get_object_or_404(Colecao, id=colecao_id)
     if request.method == 'POST':
         texto_comentario = request.POST.get('comentario')

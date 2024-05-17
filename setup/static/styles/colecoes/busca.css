@@ -170,6 +170,37 @@ a {
 
 }
 
+.foto_addon {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9f1a1;
+}
+
+#foto_perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+.card_perfil{
+    width: 600px;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.linhas_info{
+    display: flex;
+}
+
 .card_perfil:hover {
     transition: 0.15s;
     transform: scale(1.05);
@@ -280,5 +311,21 @@ a {
         padding: 20px 10px 20px 10px;
         border-top: 1px solid #33333350;
         background-color: #EFEFEF;
+    }
+
+    .card_perfil{
+        width: 100%;
+        padding: 2px;
+    }
+    
+    .foto_addon{
+        width: 44px;
+        height: 44px;
+        margin-right: 0;
+    }
+
+    #foto_perfil {
+        width: 44px;
+        height: 44px;
     }
 }

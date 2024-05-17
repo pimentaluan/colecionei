@@ -1,6 +1,8 @@
 {% load static %}
+{% load filters %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -34,27 +36,46 @@
         <div class="resultados_busca">
 
             {% for usuario in usuarios %}
-            <div class="clicavel card_perfil" data-url="{% url 'perfil' usuario.id %}"
-                style="width: 400px; display: flex; background-color: rgb(255 239 154); margin-top: 20px; margin-bottom: 10px; padding: 20px; border-radius: 15px;">
-                {% if usuario.photo %}
-                <img src="{{ usuario.photo.url }}" class="card-img-top" alt="{{ usuario.username }}"
-                    style="width: 80px; height: 100%; border-radius: 45px;">
-                {% else %}
-                <img src="{% static 'assets/icones/perfil.svg' %}" class="card-img-top" alt="{{ usuario.username }}"
-                    style="width: 70px; height: 100%;">
-                {% endif %}
-                <div class="card-body" style="display: flex; align-items: center; justify-content: space-between;">
-                    <h5 class="card-title" style="margin-right: 20px; margin-left: 10px;">
-                        @{{ usuario.username }}
-                    </h5>
-                    {% if not usuario.esta_seguindo %}
-                    <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary stop-propagation">Seguir</a>
-                    {% else %}
-                    <a href="{% url 'deixar_seguir_usuario' usuario.id %}"
-                        class="btn btn-danger stop-propagation">Deixar de seguir</a>
-                    {% endif %}
+                <div class="clicavel card_perfil" data-url="{% url 'perfil' usuario.username %}">
+                    <div class='foto_addon'>
+                        {% if usuario.photo %}
+                        <img src="{{ usuario.photo.url }}" id="foto_perfil">
+                        {% else %}
+                        <img src="{% static 'assets/icones/perfil.svg' %}" id="foto_perfil">
+                        {% endif %}
+                    </div>
+                    <div class="card-body" style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h5 class="card-title" style="margin-right: 20px; margin-left: 10px;">
+                                @{{ usuario.username }}
+                            </h5>
+                            <div class="linhas_info">
+                                {% if usuario.nome_completo %}
+                                    <p class="card-text" style="margin-left: 10px; margin-bottom: 0;">
+                                        {{ usuario.nome_completo }} 
+                                    </p>
+                                {% else %}
+                                    <p class="card-text" style="margin-left: 10px; margin-bottom: 0;">{{ usuario.first_name }} {{ usuario.last_name }} </p>
+                                {% endif %}
+                                {% if usuario.esta_seguindo %}
+                                    <p style="margin-bottom: 0;"> • Seguindo</p>
+                                {% else %}
+                                    {% if quantidade_seguidores == 1 %}
+                                        <p class="p_stats" style="margin-right: 20px;  margin-bottom: 0;"><span> • {{ quantidade_seguidores|format_number }}</span> Seguidor</p>
+                                    {% else %}
+                                        <p class="p_stats" style="margin-right: 20px;  margin-bottom: 0;"><span> • {{ quantidade_seguidores|format_number }}</span> Seguidores</p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if not usuario.esta_seguindo %}
+                        <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary stop-propagation">Seguir</a>
+                        {% else %}
+                        <a href="{% url 'deixar_seguir_usuario' usuario.id %}"
+                            class="btn btn-danger stop-propagation">Seguindo</a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
             {% endfor %}
 
             {% for colecao in colecoes %}

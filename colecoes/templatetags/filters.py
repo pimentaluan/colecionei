@@ -15,3 +15,8 @@ def format_number(value):
         return f'{value:,}'.replace(',', '.')
     else:
         return value
+
+@register.filter
+def call(obj, method):
+    method_to_call = getattr(obj, method)
+    return method_to_call()

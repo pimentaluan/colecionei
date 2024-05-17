@@ -1,6 +1,9 @@
 {% load static %}
+{% load filters %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 
 <head>
     <meta charset="UTF-8">
@@ -10,10 +13,14 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/colecoes/perfil.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'assets/imagens/icon.svg' %}"/>
-    {% if other_user.nome_completo %}
-    <title>{{ other_user.primeiro_nome }} (@{{ other_user.username }}) • Perfil</title>
+    {% if user.is_authenticated %}
+        {% if other_user.nome_completo %}
+        <title>{{other_user.primeiro_nome}} (@{{other_user.username }}) • Suas melhores coleções no Colecionei<title>
+        {% else %}
+        <title>{{ other_user.first_name }} (@{{other_user.username}}) • Suas melhores coleções no Colecionei</title>
+        {% endif %}
     {% else %}
-    <title>{{ other_user.first_name }} (@{{ other_user.username }}) • Perfil</title>
+        <title>Colecionei - Faça login!</title>
     {% endif %}
 </head>
 
@@ -23,9 +30,12 @@
     </div>
 
     <section class="corpo_pagina">
+
+        {% if user.is_authenticated %}
         <div style="margin-bottom: 20px;">
             <a href="{{ pagina_anterior }}" class="pagina_anterior">←Voltar</a>
         </div>
+        {% endif %}
 
         <div class="info">
             <div class='foto_addon'>
@@ -36,46 +46,72 @@
                 {% endif %}
             </div>
             <div class="dados" style="margin: 0;">
-                <h1>@{{ other_user.username }}</h1>
-                {% if other_user.nome_completo %}
-                <p>{{ other_user.nome_completo }}</p>
-                {% else %}
-                <p>{{ other_user.first_name }} {{ other_user.last_name }}</p>
-                {% endif %}
+                <div style="display: flex; align-items: center;" class="username">
+                    <h1 >@{{ other_user.username }}</h1>
+                    <div class="linha_2" style="display: flex; margin-top: 10px;">
+                        {% if user.is_authenticated %}
+                            {% if not esta_seguindo %}
+                                <div id="editar_perfil" class="seguir">
+                                    <a href="{% url 'seguir_usuario' other_user.id %}" class="stop-propagation">Seguir</a>
+                                </div>
+                            {% else %}
+                                <div id="editar_perfil" class="deixar-seguir">
+                                    <a href="{% url 'deixar_seguir_usuario' other_user.id %}" class="stop-propagation">Seguindo</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        <div id="compartilhar_perfil" onclick="copiarLink()">
+                            <a style="margin-bottom: 0;"> Compartilhar</a>
+                        </div>
+                    </div>                    
+                </div>
 
-                {% if other_user.bio %}
-                <p>{{ other_user.bio }}</p>
-                {% else %}
-                {% endif %}
-
-                <div style="display: flex; justify-content: space-between;">
+                <div style="display: flex;" class="numeros">
                     <div class="stats" style="margin: 0;">
                         {% if quantidade_colecoes == 1 %}
-                        <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleção</p>
+                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_colecoes|format_number }}</span> Coleção</p>
                         {% else %}
-                        <p style="margin-right: 35px;"><span>{{ quantidade_colecoes }}</span> Coleções</p>
+                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_colecoes|format_number }}</span> Coeleções
+                        </p>
                         {% endif %}
                         {% if quantidade_itens == 1 %}
-                        <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Item</p>
+                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_itens|format_number }}</span> Item</p>
                         {% else %}
-                        <p style="margin-right: 20px;"><span>{{ quantidade_itens }}</span> Itens</p>
+                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_itens|format_number }}</span> Itens</p>
                         {% endif %}
                     </div>
 
                     <div class="stats" style="margin: 0;">
-                        {% if quantidade_colecoes == 1 %}
-                        <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidor</p>
+                        {% if quantidade_seguidores == 1 %}
+                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor
+                        </p>
                         {% else %}
-                        <p style="margin-right: 20px;"><span>{{ quantidade_seguidores }}</span> Seguidores</p>
+                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores
+                        </p>
                         {% endif %}
                         {% if quantidade_seguindo == 1 %}
-                        <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
+                        <p class="p_stats" style=" margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
                         {% else %}
-                        <p style="margin-right: 20px;"><span>{{ quantidade_seguindo }}</span> Seguindo</p>
+                        <p class="p_stats" style="margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
                         {% endif %}
                     </div>
                 </div>
 
+                <div>
+                    {% if other_user.nome_completo %}
+                    <p style="font-weight: 600; font-size: 20px; margin-bottom: 0;">{{ other_user.nome_completo }}</p>
+                    {% else %}
+                    <p style="font-weight: 600; font-size: 20px; margin-bottom: 0;">{{ other_user.first_name }} {{ other_user.last_name }}</p>
+                    {% endif %}
+
+                    {% if other_user.biografia %}
+                        <p id="biografia" style="margin-bottom: 0;">{{ other_user.biografia|slice:":150" }}<span id="ellipsis" style="display: inline;">...</span><span id="moreText" style="display: none;">{{ other_user.biografia|slice:"150:" }}</span></p>
+                        {% if other_user.biografia|length > 100 %}
+                            <a href="" id="moreLink" style="color: crimson; text-decoration: none;">mais...</a>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
             </div>
         </div>
 
@@ -111,5 +147,8 @@
         {% include 'partials/_footer_celular.html' %}
     </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'scripts/perfil.js' %}"></script>
 
 </html>

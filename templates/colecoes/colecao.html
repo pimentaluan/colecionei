@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,11 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/colecoes/colecao.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'assets/imagens/icon.svg' %}"/>
-    <title>{{ colecao.nome}} • @{{user.username }}</title>
+    {% if user.is_authenticated %}
+        <title>{{ colecao.nome}} • @{{user.username }}</title>
+    {% else %}
+        <title>Colecionei - Faça login!</title>
+    {% endif %}
 </head>
 
 <body class="corpo">
@@ -19,9 +24,11 @@
     </div>
 
     <section class="corpo_pagina">
+        {% if user.is_authenticated %}
         <div style="margin-bottom: 20px;">
             <a href="{{ pagina_anterior }}" class="pagina_anterior">←Voltar</a>
         </div>
+        {% endif %}
 
         <div class="titulo_pagina">
             <h1>{{ colecao.nome }}</h1>

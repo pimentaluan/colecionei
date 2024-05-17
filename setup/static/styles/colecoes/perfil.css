@@ -168,7 +168,6 @@ a {
 
 .info {
     display: flex;
-    align-items: center;
 }
 
 .foto_addon {
@@ -187,6 +186,11 @@ a {
     height: 150px;
     border-radius: 100px;
     object-fit: cover;
+}
+
+.username h1{
+    font-size: 30px;
+    margin-top: 10px;
 }
 
 #editar_perfil {
@@ -214,6 +218,46 @@ a {
 
 #editar_perfil:hover a {
     color: #FF0049;
+    transition: 0.3s;
+}
+
+#editar_perfil.seguir {
+    background-color: #004fff;
+}
+
+#editar_perfil.deixar-seguir {
+    background-color: #FF0049;
+}
+
+#editar_perfil:hover {
+    background-color: #EFEFEF;
+}
+
+#compartilhar_perfil {
+    padding: 2px 10px;
+    background-color: #FF0049;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 15pt;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-left: 10px;
+}
+
+#compartilhar_perfil a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+#compartilhar_perfil:hover {
+    background-color: rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+#compartilhar_perfil:hover a {
+    color: #000000;
     transition: 0.3s;
 }
 
@@ -279,7 +323,9 @@ a {
 }
 
 @media screen and (max-width: 768px) {
-
+    .corpo_pagina{
+        margin-bottom: 75px;
+    }
     #meu-cabecalho-celular {
         display: block;
         position: fixed;
@@ -353,7 +399,7 @@ a {
         width: 100px;
         height: 100px;
         border-radius: 100px;
-        margin-right: 20px;
+        margin-right: 0px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -367,8 +413,9 @@ a {
     }
 
     .info{
-            display: flex;
-            flex-direction: column;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .numeros {
@@ -377,5 +424,24 @@ a {
 
     .username{
         justify-content: center;
+        flex-direction: column; 
+        margin-top: 15px;
     }
+
+    .username h1{
+        font-size: 20px;
+    }
+
+    .p_stats{
+        text-align: center;
+    }
+
+    .colecoes {
+        justify-content: center;
+    }
+
+    .colecao_card{
+        margin-right: 0!important;
+    }
+
 }

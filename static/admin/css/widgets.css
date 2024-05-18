@@ -68,7 +68,7 @@
     width: 18px;
     height: 18px;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
     line-height: 1;
     min-width: auto;
 }
@@ -118,7 +118,7 @@
     height: 16px;
     display: block;
     text-indent: -3000px;
-    overflow: hidden;
+    overflow: auto;
     cursor: default;
     opacity: 0.55;
 }
@@ -152,7 +152,7 @@ a.selector-chooseall, a.selector-clearall {
     height: 16px;
     text-align: left;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: auto;
     font-weight: bold;
     line-height: 16px;
     color: var(--body-quiet-color);
@@ -320,7 +320,7 @@ table p.datetime {
     vertical-align: middle;
     height: 16px;
     width: 16px;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .datetimeshortcuts .clock-icon {
@@ -400,7 +400,7 @@ span.clearable-file-input label {
     border: 1px solid var(--hairline-color);
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
+    overflow: auto;
     position: relative;
 }
 

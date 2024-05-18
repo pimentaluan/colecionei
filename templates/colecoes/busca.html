@@ -24,7 +24,7 @@
         {% include 'partials/_header.html' %}
     </div>
 
-    <section class="corpo_pagina">
+    <section class="corpo_pagina" style="height: 100vh; overflow: auto;">
         <form id="form-busca" action="{% url 'buscar' %}" class="form-inline my-2 my-lg-0" style="display: flex;">
             <input id="input-busca" class="form-control mr-sm-2 busca__input" type="search" name="buscar"
                 placeholder="O que você procura?" aria-label="Buscar">
@@ -52,10 +52,10 @@
                             <div class="linhas_info">
                                 {% if usuario.nome_completo %}
                                     <p class="card-text" style="margin-left: 10px; margin-bottom: 0;">
-                                        {{ usuario.nome_completo }} 
+                                        {{ usuario.primeiro_nome }} 
                                     </p>
                                 {% else %}
-                                    <p class="card-text" style="margin-left: 10px; margin-bottom: 0;">{{ usuario.first_name }} {{ usuario.last_name }} </p>
+                                    <p class="card-text" style="margin-left: 10px; margin-bottom: 0;">{{ usuario.first_name }}</p>
                                 {% endif %}
                                 {% if usuario.esta_seguindo %}
                                     <p style="margin-bottom: 0;"> • Seguindo</p>

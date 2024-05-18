@@ -24,6 +24,6 @@
 
 ul.actionlist li {
     list-style-type: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: auto;
+    text-overflow: hidden;
 }

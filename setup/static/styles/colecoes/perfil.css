@@ -10,9 +10,7 @@ h6 {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+text-overflow: ellipsis;    overflow: hidden;    white-space: nowrap;
     display: block;
     margin-bottom: 0!important;
 }
@@ -23,8 +21,8 @@ a {
     font-weight: 400;
     font-style: normal !important;
     font-size: 1.1rem;
-    text-overflow: ellipsis !important;
-    overflow: hidden !important;
+    text-overflow: auto !important;
+    overflow: auto !important;
 }
 
 .menu_navegacao a {
@@ -57,7 +55,6 @@ a {
     flex: 2;
     position: relative;
     overflow: hidden;
-
 }
 
 #meu-cabecalho-celular {
@@ -112,7 +109,7 @@ a {
     padding-left: 6%;
     padding-right: 6%;
     padding-top: 5%;
-    overflow: auto;
+    overflow: auto;    
     display: flex;
     flex-direction: column;
 }
@@ -204,6 +201,7 @@ a {
     text-decoration: none;
     transition: 0.3s;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 #editar_perfil a {
@@ -244,11 +242,13 @@ a {
     text-decoration: none;
     transition: 0.3s;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 #compartilhar_perfil a {
     color: rgb(255, 255, 255);
     text-decoration: none;
+    cursor: pointer;
 }
 
 #compartilhar_perfil:hover {
@@ -275,6 +275,12 @@ a {
     font-size: 20px;
     font-weight: bold;
 }
+
+
+#moreLink {
+    cursor: pointer;
+}
+
 
 .colecoes {
     display: flex;
@@ -443,5 +449,4 @@ a {
     .colecao_card{
         margin-right: 0!important;
     }
-
 }

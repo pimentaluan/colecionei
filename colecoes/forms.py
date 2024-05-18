@@ -81,22 +81,49 @@ class ItemForms(forms.ModelForm):
         }
 
 class EditarPerfilForm(forms.ModelForm):
+    nome_completo = forms.CharField(
+        label='Nome completo',
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=False
+    )
+    first_name = forms.CharField(
+        label='Primeiro nome',
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=False
+    )
+    last_name = forms.CharField(
+        label='Último nome',
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=False
+    )
+
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'username', 'photo', 'biografia']
+        fields = ['nome_completo', 'first_name', 'last_name', 'email', 'username', 'photo', 'biografia']
         labels = {
-            'first_name': 'Nome',
-            'last_name': 'Sobrenome',
+            'nome_completo': 'Nome completo',
+            'first_name': 'Primeiro nome',
+            'last_name': 'Último nome',
             'email': 'Email',
             'username': 'Nome de usuário',
             'photo': 'Foto',
             'biografia': 'Biografia',
         }
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'photo': forms.FileInput(attrs={'class': 'form-control'}),
             'biografia': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            if self.instance.nome_completo:
+                self.fields['nome_completo'].initial = self.instance.nome_completo
+                self.fields['first_name'].widget = forms.HiddenInput()
+                self.fields['last_name'].widget = forms.HiddenInput()
+            else:
+                self.fields['first_name'].initial = self.instance.first_name
+                self.fields['last_name'].initial = self.instance.last_name
+                self.fields['nome_completo'].widget = forms.HiddenInput()

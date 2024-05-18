@@ -516,7 +516,7 @@ input[type="submit"], button {
         float: none;
         margin: 0 0 15px;
         padding: 0;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .object-tools li {
@@ -910,12 +910,12 @@ input[type="submit"], button {
 
     .calendarbox .calendar, .clockbox h2 {
         border-radius: 4px 4px 0 0;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .calendarbox .calendar-cancel, .clockbox .calendar-cancel {
         border-radius: 0 0 4px 4px;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .calendar-shortcuts {

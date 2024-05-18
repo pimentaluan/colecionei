@@ -128,28 +128,7 @@
     </div>
 </body>
 
-<script>
-    function copiarLink() {
-        var dummy = document.createElement('input'),
-        text = window.location.href;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'scripts/perfil.js' %}"></script>
 
-        document.body.appendChild(dummy);
-        dummy.value = text;
-        dummy.select();
-        document.execCommand('copy');
-        document.body.removeChild(dummy);
-
-        var linkElement = document.querySelector('#compartilhar_perfil');
-        linkElement.style.backgroundColor = '#004FFF';
-        linkElement.style.transition = 'background-color 0.3s';
-
-        var linkElementtext = document.querySelector('#compartilhar_perfil a');
-        linkElementtext.innerHTML = 'Link copiado!';
-
-        setTimeout(function() {
-            linkElement.style.backgroundColor = '';
-            linkElementtext.innerHTML = 'Compartilhar perfil';
-        }, 4000);
-    }
-</script>
 </html>

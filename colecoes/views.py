@@ -57,7 +57,7 @@ def nova_colecao(request):
                 messages.error(request, 'Uma coleção com esse nome já existe para este usuário.')
                 return render(request, 'colecoes/nova_colecao.html', {'user': request.user, 'form': form})
             messages.success(request, 'Coleção criada com sucesso')
-            return redirect('perfil', usuario_id=request.user.id)
+            return redirect('perfil', usuario_id=request.user.username)
     else:
         form = ColecaoForms()
     

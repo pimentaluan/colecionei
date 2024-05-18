@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 
 def upload_to(instance, filename):
-    return f'fotos/{datetime.now().year}/{instance.id}/{filename}'
+    username = instance.username.replace('?', '_')
+    return f'foto_user/{username}/{datetime.now().year}/{filename}'
 
 class Usuario(AbstractUser):
     DEFAULT_PHOTO_PATH = "static 'assets/icones/coroa.svg'"
@@ -19,3 +20,9 @@ class Usuario(AbstractUser):
     
     def primeiro_nome(self):
         return self.nome_completo.split(' ')[0]
+    
+    def get_nome_completo(self):
+        if self.nome_completo:
+            return self.nome_completo
+        else:
+            return f"{self.first_name} {self.last_name}"

@@ -10,8 +10,7 @@ h6 {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    text-overflow: ellipsis;
-    overflow: hidden;
+text-overflow: ellipsis;    overflow: auto;
     white-space: nowrap;
     display: block;
 }
@@ -22,8 +21,8 @@ a {
     font-weight: 400 !important;
     font-style: normal !important;
     font-size: 1.1rem !important;
-    text-overflow: ellipsis !important;
-    overflow: hidden !important;
+    text-overflow: auto !important;
+    overflow: auto !important;
 }
 
 .menu_navegacao a {
@@ -55,7 +54,7 @@ a {
     height: 100vh;
     flex: 2;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 
 }
 

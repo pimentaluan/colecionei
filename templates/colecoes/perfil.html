@@ -15,7 +15,7 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'assets/imagens/icon.svg' %}"/>
     {% if user.is_authenticated %}
         {% if other_user.nome_completo %}
-        <title>{{other_user.primeiro_nome}} (@{{other_user.username }}) • Suas melhores coleções no Colecionei<title>
+        <title>{{other_user.primeiro_nome}} (@{{other_user.username }}) • Suas melhores coleções no Colecionei</title>
         {% else %}
         <title>{{ other_user.first_name }} (@{{other_user.username}}) • Suas melhores coleções no Colecionei</title>
         {% endif %}
@@ -30,13 +30,6 @@
     </div>
 
     <section class="corpo_pagina">
-
-        {% if user.is_authenticated %}
-        <div style="margin-bottom: 20px;">
-            <a href="{{ pagina_anterior }}" class="pagina_anterior">←Voltar</a>
-        </div>
-        {% endif %}
-
         <div class="info">
             <div class='foto_addon'>
                 {% if other_user.photo %}

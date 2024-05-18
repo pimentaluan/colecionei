@@ -271,7 +271,7 @@ a.active.selector-clearall:focus, a.active.selector-clearall:hover {
 }
 
 form .form-row p.datetime {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .related-widget-wrapper {

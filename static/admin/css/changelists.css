@@ -47,7 +47,7 @@
     color: var(--body-quiet-color);
     border-bottom: 1px solid var(--hairline-color);
     background: var(--body-bg);
-    overflow: hidden;
+    overflow: auto;
 }
 
 /* CHANGELIST TABLES */

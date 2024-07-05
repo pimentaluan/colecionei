@@ -146,7 +146,11 @@ USE_TZ = True
 # Get the environment variable
 BRANCH_NAME = os.getenv('BRANCH_NAME')
 
+<<<<<<< HEAD
 # Verifica se a variável de ambiente BRANCH_NAME está definida
+=======
+# Configurações para a branch de desenvolvimento
+>>>>>>> 2ce6af1fd71e25e24ecf30d4c30dc07a2a581de2
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'setup/static')

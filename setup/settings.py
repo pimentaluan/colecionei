@@ -116,7 +116,7 @@ USE_TZ = True
 
 BRANCH_NAME = os.getenv('BRANCH_NAME')
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'setup/static')
 ]

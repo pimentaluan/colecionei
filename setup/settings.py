@@ -117,10 +117,12 @@ USE_TZ = True
 BRANCH_NAME = os.getenv('BRANCH_NAME')
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'setup/static')
+    os.path.join(BASE_DIR, 'static'), 
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = "/fotos/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'fotos')

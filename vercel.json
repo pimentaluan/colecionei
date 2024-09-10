@@ -1,23 +1,6 @@
 {
-    "builds": [
-        {
-            "src": "setup/wsgi.py",
-            "use": "@vercel/python",
-            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
-        {
-            "src": "/fotos/(.*)",
-            "dest": "/fotos/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "setup/wsgi.py"
-        }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
     ]
-}
+  }
+  

@@ -10,10 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -117,13 +116,11 @@ USE_TZ = True
 
 BRANCH_NAME = os.getenv('BRANCH_NAME')
 
-STATIC_URL = '/static/'
-
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'setup/static')
 ]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = "/fotos/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'fotos')

@@ -64,16 +64,14 @@
 
                     <div class="stats" style="margin: 0;">
                         {% if quantidade_seguidores == 1 %}
-                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor
-                        </p>
+                        <a href="{% url 'seguidores' user.username %}"><p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor</p></a>
                         {% else %}
-                        <p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores
-                        </p>
+                        <a href="{% url 'seguidores' user.username %}"><p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores</p></a>
                         {% endif %}
                         {% if quantidade_seguindo == 1 %}
-                        <p class="p_stats" style=" margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
+                        <a href="{% url 'seguindo' user.username %}"><p class="p_stats" style=" margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p></a>
                         {% else %}
-                        <p class="p_stats" style="margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p>
+                        <a href="{% url 'seguindo' user.username %}"><p class="p_stats" style="margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p></a>
                         {% endif %}
                     </div>
                 </div>

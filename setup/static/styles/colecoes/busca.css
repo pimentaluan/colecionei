@@ -209,6 +209,141 @@ a {
 }
 
 
+/* Resultados de busca */
+.resultados_busca {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Card de perfil */
+.card_perfil {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card_perfil:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.foto_addon img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Informações de perfil */
+.perfil-info {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.username {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.linhas_info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Cards de Coleções */
+.colecoes-encontradas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.colecoes-titulo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.colecao-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+}
+
+.colecao-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.colecao-img img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.colecao-detalhes {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.colecao-nome {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+}
+
+.colecao-descricao {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.colecao-categoria {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.colecao-acoes {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.colecao-acoes .btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.btn-info{
+    background-color: #004FFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-info:hover {
+    background-color: #002faf;
+    color: white;
+}
+
 
 @media screen and (max-width: 1263px) {
     .cabecalho {

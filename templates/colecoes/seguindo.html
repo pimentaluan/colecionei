@@ -1,0 +1,48 @@
+{% load static %}
+<head>
+    <title>{{ user.username }} está seguindo</title>
+    <link rel="stylesheet" href="{% static 'styles/colecoes/seguindo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<div class="seguindo-container">
+
+    <div class="usuarios-seguindo">
+        {% for usuario in seguindo %}
+            <div class="usuario-item">
+                <img src="{{ usuario.foto.url }}" alt="{{ usuario.username }}" class="usuario-foto">
+                <div class="usuario-info">
+                    <h3>{{ usuario.username }}</h3>
+                    <p>{{ usuario.nome_completo }}</p>
+                </div>
+                <div class="usuario-acoes">
+                    {% if request.user in usuario.seguidores.all %}
+                        <button class="btn-seguir seguir-back" data-id="{{ usuario.id }}">Seguir de volta</button>
+                    {% else %}
+                        <button class="btn-seguir" data-id="{{ usuario.id }}">Deixar de seguir</button>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>{{ user.username }} não está seguindo ninguém ainda.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // Script para ação de seguir ou deixar de seguir (simulação)
+    document.querySelectorAll('.btn-seguir').forEach(button => {
+        button.addEventListener('click', function() {
+            const userId = this.getAttribute('data-id');
+            if (this.classList.contains('seguir-back')) {
+                // Lógica para seguir de volta
+                this.textContent = 'Seguindo';
+                this.classList.remove('seguir-back');
+            } else {
+                // Lógica para deixar de seguir
+                this.textContent = 'Seguir';
+            }
+            this.classList.toggle('seguindo');
+        });
+    });
+</script>

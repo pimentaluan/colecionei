@@ -6,6 +6,11 @@ from usuarios.models import Usuario
 from colecoes.models import Colecao, Item, Comentario, Busca
 from django.db import IntegrityError
 from random import choice
+from itertools import chain
+from django.core.paginator import Paginator
+from django.db.models import Count
+from random import sample
+
 
 
 def pagina_anterior(request):
@@ -19,10 +24,46 @@ def feed(request):
     user = request.user
     icone = icone_aleatorio()
 
+    # Usuários seguidos
     usuarios_seguidos = user.seguindo.all()
-    colecoes_seguindo = Colecao.objects.filter(usuario__in=usuarios_seguidos).order_by('-data_criacao')
-    
-    return render(request, 'colecoes/feed.html', {'user': user, 'icone_aleatorio': icone})
+
+    # Coleções dos usuários seguidos (mais relevantes primeiro)
+    colecoes_seguidas = Colecao.objects.filter(usuario__in=usuarios_seguidos).annotate(
+        likes_count=Count('likes')
+    ).order_by('-likes_count', '-data_criacao')
+
+    # Recomendações de coleções
+    categorias_interessadas = Item.objects.filter(colecao__usuario=user).values_list('categoria', flat=True)
+    recomendacoes_colecoes = Colecao.objects.filter(categoria__in=categorias_interessadas).exclude(usuario=user).annotate(
+        likes_count=Count('likes')
+    ).order_by('-likes_count', '-data_criacao')[:10]
+
+    # Recomendações de perfis esporádicas
+    usuarios_nao_seguidos = Usuario.objects.exclude(id__in=usuarios_seguidos).exclude(id=user.id)
+    num_usuarios_para_recomendar = min(3, len(usuarios_nao_seguidos))
+    recomendacoes_usuarios = sample(list(usuarios_nao_seguidos), num_usuarios_para_recomendar)
+
+    # Adicionando uma marcação de tipo para recomendação de usuário
+    recomendacoes_usuarios = [{'tipo': 'usuario', 'usuario': usuario} for usuario in recomendacoes_usuarios]
+
+    # Combinar coleções seguidas e recomendações em um único feed
+    feed_items = sorted(
+        chain(colecoes_seguidas, recomendacoes_colecoes, recomendacoes_usuarios),
+        key=lambda obj: obj.data_criacao if hasattr(obj, 'data_criacao') else timezone.now(),
+        reverse=True
+    )
+
+    paginator = Paginator(feed_items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'colecoes/feed.html', {
+        'user': user,
+        'icone_aleatorio': icone,
+        'feed_items': page_obj,
+    })
+
+
 
 def colecao(request, username, colecao_id):
     user = request.user
@@ -268,3 +309,21 @@ def comentar_colecao(request, colecao_id):
         texto_comentario = request.POST.get('comentario')
         Comentario.objects.create(usuario=request.user, colecao=colecao, texto=texto_comentario)
     return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
+
+def seguindo(request, username):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+    user = get_object_or_404(Usuario, username=username)
+    seguindo = user.seguindo.all()
+    icone = icone_aleatorio()
+    return render(request, 'colecoes/seguindo.html', {'user': user, 'seguindo': seguindo, 'icone_aleatorio': icone})
+
+def seguidores(request, username):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+    user = get_object_or_404(Usuario, username=username)
+    seguidores = user.seguidores.all()
+    icone = icone_aleatorio()
+    return render(request, 'colecoes/seguidores.html', {'user': user, 'seguido': seguidores, 'icone_aleatorio': icone})

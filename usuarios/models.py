@@ -26,3 +26,7 @@ class Usuario(AbstractUser):
             return self.nome_completo
         else:
             return f"{self.first_name} {self.last_name}"
+        
+    @property
+    def quantidade_seguidores(self):
+        return self.seguidores.count()

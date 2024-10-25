@@ -1,0 +1,125 @@
+a{
+    text-decoration: none;
+    color: #FF0049;
+    
+}
+
+/* Container principal */
+.seguindo-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.seguindo-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo da lista de usuários seguidos */
+.usuarios-seguindo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.usuario-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.usuario-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo da imagem de perfil */
+.usuario-foto {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Informações do usuário */
+.usuario-info h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.usuario-info p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0 0 0;
+}
+
+/* Botões de ação */
+.usuario-acoes {
+    display: flex;
+    align-items: center;
+}
+
+.btn-seguir {
+    background-color: var(--primary-color, #2F40FA);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-seguir:hover {
+    background-color: var(--hover-color, #FF0049);
+}
+
+.btn-seguir.seguindo {
+    background-color: #ddd;
+    color: #333;
+    cursor: not-allowed;
+}
+
+.btn-seguir.seguir-back {
+    background-color: var(--secondary-color, #FF0049);
+}
+
+@media (max-width: 768px) {
+    .usuario-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .usuario-foto {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .usuario-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .usuario-info p {
+        font-size: 0.9rem;
+    }
+
+    .btn-seguir {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,166 @@
+h3 {
+    color: #EFEFEF;
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+}
+
+h6 {
+    color: #EFEFEF;
+    font-family: 'Roboto', sans-serif;
+}
+
+#logo {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.pagina-inicial {
+    display: flex;
+    background-color: #EFEFEF;
+}
+
+.corpo_login {
+    width: 500px;
+    background-color: #004FFF;
+    height: 100vh;
+    padding: 20px;
+    overflow: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; 
+}
+
+#label {
+    color: #EFEFEF;
+    margin-bottom: 5px;
+}
+
+.senha-container {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#senha {
+    padding-right: 40px;
+}
+
+#olho {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 20px;
+    transform: translateY(-50%);
+
+}
+
+
+.btn {
+    margin-top: 10px;
+    width: 100px;
+}
+
+#google_login {
+    margin: auto;
+    margin-top: 20px;
+    width: 50%;
+    border: solid #000000 1px;
+}
+
+.chuva-icones {
+    width: 100%;
+    flex: 2;
+    position: relative;
+    overflow: auto;
+}
+
+.icone {
+    width: 50px;
+    position: absolute;
+    top: -20px;
+    animation: chuva 5s linear infinite;
+}
+
+.alert-error{
+    --bs-alert-color: #842029!important;
+    --bs-alert-bg: #f8d7da!important;;
+    --bs-alert-border-color: #f5c2c7!important;;
+
+}
+
+.alert-success{
+    --bs-alert-color: #0f5132!important;
+    --bs-alert-bg: #d1e7dd!important;
+    --bs-alert-border-color: #badbcc!important;
+}
+.alert{
+    --bs-alert-bg: transparent;
+    --bs-alert-padding-x: 1rem;
+    --bs-alert-padding-y: 1rem;
+    --bs-alert-margin-bottom: 1rem;
+    --bs-alert-color: inherit;
+    --bs-alert-border-color: transparent;
+    --bs-alert-border: 1px solid var(--bs-alert-border-color);
+    --bs-alert-border-radius: 0.375rem;
+    position: relative;
+    padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+    margin-bottom: var(--bs-alert-margin-bottom);
+    color: var(--bs-alert-color);
+    background-color: var(--bs-alert-bg);
+    border: var(--bs-alert-border);
+    border-radius: var(--bs-alert-border-radius);
+}
+
+
+@keyframes chuva {
+    0% {
+        transform: translateY(-100vh);
+    }
+
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .chuva-icones {
+        display: none;
+    }
+    .icone {
+        display: none;
+    }
+
+    .corpo_login {
+        width: 100%;
+    }
+
+    #logo {
+        width: 80%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Estilo para a barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px; /* largura da barra de rolagem */
+  }
+  
+  /* Estilo para o trilho da barra de rolagem */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* cor de fundo do trilho */
+  }
+  
+  /* Estilo para o botão de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background: #FFCA2C; /* cor do botão de rolagem */
+    border-radius: 4px; /* bordas arredondadas */
+  }
+  
+  /* Estilo para o botão de rolagem ao passar o mouse */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f0b401; /* cor do botão de rolagem ao passar o mouse */
+  }
+ 

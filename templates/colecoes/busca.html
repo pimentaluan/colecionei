@@ -60,10 +60,10 @@
                                 {% if usuario.esta_seguindo %}
                                     <p style="margin-bottom: 0;"> • Seguindo</p>
                                 {% else %}
-                                    {% if quantidade_seguidores == 1 %}
-                                        <p class="p_stats" style="margin-right: 20px;  margin-bottom: 0;"><span> • {{ quantidade_seguidores|format_number }}</span> Seguidor</p>
+                                    {% if usuario.quantidade_seguidores == 1 %}
+                                        <p class="p_stats" style="margin-right: 20px;  margin-bottom: 0;"><span> • {{ usuario.quantidade_seguidores|format_number }}</span> Seguidor</p>
                                     {% else %}
-                                        <p class="p_stats" style="margin-right: 20px;  margin-bottom: 0;"><span> • {{ quantidade_seguidores|format_number }}</span> Seguidores</p>
+                                        <p class="p_stats" style="margin-right: 20px;  margin-bottom: 0;"><span> • {{ usuario.quantidade_seguidores|format_number }}</span> Seguidores</p>
                                     {% endif %}
                                 {% endif %}
                             </div>
@@ -78,10 +78,32 @@
                 </div>
             {% endfor %}
 
-            {% for colecao in colecoes %}
-            <p>{{ colecao.nome }}</p>
-            {% endfor %}
-        </div>
+            <!-- Resultados de Coleções -->
+            <div class="colecoes-encontradas">
+                {% for colecao in colecoes %}
+                <h2 class="colecoes-titulo">Coleções Encontradas</h2>
+                <div class="colecao-card">
+                    <div class="colecao-img">
+                        {% if colecao.foto %}
+                        <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
+                        {% else %}
+                        <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image"
+                            style="width: 100%;">
+                        {% endif %}
+                    </div>
+                    <div class="colecao-detalhes">
+                        <h3 class="colecao-nome">{{ colecao.nome }}</h3>
+                        <p class="colecao-descricao">{{ colecao.descricao|truncatewords:20 }}</p>
+                        <p class="colecao-categoria"><strong>Categoria:</strong> {{ colecao.categoria.nome }}</p>
+                        <div class="colecao-acoes">
+                            <a href="{% url 'colecao' colecao.usuario.username colecao.id %}" class="btn btn-info">Ver Coleção</a>                
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-result">Nenhuma coleção encontrada.</p>
+                {% endfor %}
+            </div>
 
         {% if not usuarios and not colecoes and not itens %}
         <div class="historico_busca">

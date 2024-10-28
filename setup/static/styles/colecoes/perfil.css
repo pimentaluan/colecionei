@@ -23,6 +23,8 @@ a {
     font-size: 1.1rem;
     text-overflow: auto !important;
     overflow: auto !important;
+    text-decoration: none;
+    color: #333;
 }
 
 .menu_navegacao a {

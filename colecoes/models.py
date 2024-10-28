@@ -96,6 +96,10 @@ class Colecao(models.Model):
     def __str__(self):
         return self.nome
     
+    @property
+    def tipo(self):
+        return "colecao"
+    
 class Item(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
@@ -109,6 +113,10 @@ class Item(models.Model):
     foto = models.ImageField(upload_to='fotos_itens/', blank=True, null=True)
     notas_adicionais = models.TextField(blank=True)
     colecao = models.ForeignKey(Colecao, related_name='itens', on_delete=models.CASCADE)
+    
+    @property
+    def tipo(self):
+        return "item"
 
 class Comentario(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

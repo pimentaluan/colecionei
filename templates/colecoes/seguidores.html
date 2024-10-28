@@ -9,21 +9,30 @@
 
     <div class="usuarios-seguindo">
         {% for usuario in seguido %}
-            <div class="usuario-item">
-                <img src="{{ usuario.foto.url }}" alt="{{ usuario.username }}" class="usuario-foto">
-                <div class="usuario-info">
-                    <h3>{{ usuario.username }}</h3>
-                    <p>{{ usuario.nome_completo }}</p>
-                </div>
-                <div class="usuario-acoes">
-                        {% if usuario in esta_seguindo %}
-                            <a href="{% url 'deixar_seguir_usuario' usuario.id %}" class="btn-seguir">Deixar de seguir</a>
+            <a href="{% url 'perfil' usuario %}" style="display: flex;">
+                <div class="usuario-item">
+                    <div class="photo-addon">
+                    {% if usuario.photo %}
+                    <img src="{{ usuario.photo.url }}" alt="{{ usuario.username }}" class="usuario-foto">
+                    {% else %}
+                        <img src="{% static 'assets/icones/perfil.svg' %}" alt="{{ usuario.username }}" class="usuario-icone">
+                    {% endif %}
+                    </div>
+                    <div class="usuario-info">
+                        <h3>{{ usuario.username }}</h3>
+                        <p>{{ usuario.nome_completo }}</p>
+                    </div>
+                    {% if usuario != request.user %}
+                    <div class="usuario-acoes">
+                        {% if usuario in request.user.seguindo.all %}
+                            <a href="{% url 'deixar_seguir_usuario' usuario.id %}" class="btn-deixar-seguir">Deixar de seguir</a>
                         {% else %}
                             <a href="{% url 'seguir_usuario' usuario.id %}" class="btn-seguir seguir-back">Seguir de volta</a>
                         {% endif %}
+                    </div>
+                    {% endif %}
                 </div>
-        
-            </div>
+            </a>
         {% empty %}
             <p>{{ user.username }} não tem nenhum seguidor ainda.</p>
         {% endfor %}

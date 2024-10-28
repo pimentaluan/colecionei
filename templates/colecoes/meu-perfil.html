@@ -107,8 +107,11 @@
                         class="colecao_link">
                         {% if colecao.foto %}
                         <img class="card-img-top" src="{{ colecao.foto.url }}" alt="Coleção-image" style="width: 100%;">
-                        {% else %}
+                        {% elif colecao.categoria.imagem_padrao %}
                         <img class="card-img-top" src="{{ colecao.categoria.imagem_padrao.url }}" alt="Coleção-image"
+                            style="width: 100%;">
+                        {% else %}
+                        <img class="card-img-top" src="{% static 'assets/icones/ampulheta.svg' %}" alt="Coleção-image"
                             style="width: 100%;">
                         {% endif %}
                         <div class="card-body"

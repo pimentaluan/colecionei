@@ -16,6 +16,6 @@ urlpatterns = [
     path('colecao/<int:colecao_id>/like/', views.like_colecao, name='like-colecao'),
     path('colecao/<int:colecao_id>/salvar/', views.salvar_colecao, name='salvar-colecao'),
     path('colecao/<int:colecao_id>/comentar/', views.comentar_colecao, name='comentar-colecao'),
-    path('seguindo/<str:username>/', views.seguindo, name='seguindo'),
-    path('seguidores/<str:username>/', views.seguidores, name='seguidores'),
+    path('<str:username>/seguindo/', views.seguindo, name='seguindo'),
+    path('<str:username>/seguidores/', views.seguidores, name='seguidores'),
 ]

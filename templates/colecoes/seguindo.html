@@ -16,11 +16,7 @@
                     <p>{{ usuario.nome_completo }}</p>
                 </div>
                 <div class="usuario-acoes">
-                    {% if request.user in usuario.seguidores.all %}
-                        <button class="btn-seguir seguir-back" data-id="{{ usuario.id }}">Seguir de volta</button>
-                    {% else %}
-                        <button class="btn-seguir" data-id="{{ usuario.id }}">Deixar de seguir</button>
-                    {% endif %}
+                    <a href="{% url 'deixar_seguir_usuario' usuario.id %}" class="btn-seguir">Deixar de seguir</a>
                 </div>
             </div>
         {% empty %}

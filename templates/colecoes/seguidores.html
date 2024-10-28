@@ -16,12 +16,13 @@
                     <p>{{ usuario.nome_completo }}</p>
                 </div>
                 <div class="usuario-acoes">
-                    {% if request.user in usuario.seguidores.all %}
-                        <button class="btn-seguir seguir-back" data-id="{{ usuario.id }}">Seguir de volta</button>
-                    {% else %}
-                        <button class="btn-seguir" data-id="{{ usuario.id }}">Deixar de seguir</button>
-                    {% endif %}
+                        {% if usuario in esta_seguindo %}
+                            <a href="{% url 'deixar_seguir_usuario' usuario.id %}" class="btn-seguir">Deixar de seguir</a>
+                        {% else %}
+                            <a href="{% url 'seguir_usuario' usuario.id %}" class="btn-seguir seguir-back">Seguir de volta</a>
+                        {% endif %}
                 </div>
+        
             </div>
         {% empty %}
             <p>{{ user.username }} não tem nenhum seguidor ainda.</p>
@@ -29,20 +30,4 @@
     </div>
 </div>
 
-<script>
-    // Script para ação de seguir ou deixar de seguir (simulação)
-    document.querySelectorAll('.btn-seguir').forEach(button => {
-        button.addEventListener('click', function() {
-            const userId = this.getAttribute('data-id');
-            if (this.classList.contains('seguir-back')) {
-                // Lógica para seguir de volta
-                this.textContent = 'Seguindo';
-                this.classList.remove('seguir-back');
-            } else {
-                // Lógica para deixar de seguir
-                this.textContent = 'Seguir';
-            }
-            this.classList.toggle('seguindo');
-        });
-    });
-</script>
+<script src="{% static 'scripts/busca.js' %}"></script>

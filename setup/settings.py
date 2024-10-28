@@ -130,6 +130,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'fotos')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
+    messages.ERROR: 'error',
     messages.SUCCESS: 'success'
 }

@@ -323,7 +323,17 @@ def seguidores(request, username):
     if not request.user.is_authenticated:
         messages.error(request, 'Usuário não logado')
         return redirect('login')
+    
     user = get_object_or_404(Usuario, username=username)
     seguidores = user.seguidores.all()
     icone = icone_aleatorio()
-    return render(request, 'colecoes/seguidores.html', {'user': user, 'seguido': seguidores, 'icone_aleatorio': icone})
+    
+    # Obter a lista de usuários que o usuário atual está seguindo
+    esta_seguindo = request.user.seguindo.all()
+    
+    return render(request, 'colecoes/seguidores.html', {
+        'user': user,
+        'seguido': seguidores,
+        'icone_aleatorio': icone,
+        'esta_seguindo': esta_seguindo,
+    })

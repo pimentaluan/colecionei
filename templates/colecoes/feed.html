@@ -30,7 +30,11 @@
         <div class="feed-item">
             <a href="{% url 'perfil' colecao.usuario.username %}">
                 <div class="feed-header">
+                    {% if colecao.usuario.photo %}
                     <img src="{{ colecao.usuario.photo.url }}" alt="User Photo" class="user-photo">
+                    {% else %}
+                    <img src="{% static 'assets/icones/perfil.svg' %}" alt="User Photo" class="user-photo">
+                    {% endif %}
                     <div class="user-info">
                         <strong>{{ colecao.usuario.username }}</strong>
                         <small>{{ colecao.data_criacao|date:"d M Y" }}</small>

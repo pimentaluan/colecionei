@@ -16,28 +16,6 @@ function getCookie(name) {
 
 const csrftoken = getCookie('csrftoken');  // Armazena o token CSRF para uso posterior
 
-// Inicialização do Tooltip do Bootstrap
-document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(tooltipTriggerEl => {
-    new bootstrap.Tooltip(tooltipTriggerEl);
-});
-
-// Função "mais..." para expandir a biografia
-$(document).ready(function() {
-    $("#moreLink").click(function(e) {
-        e.preventDefault();
-        var $moreText = $("#moreText");
-        var $ellipsis = $("#ellipsis");
-        if ($moreText.is(":visible")) {
-            $moreText.hide();
-            $ellipsis.show();
-            $(this).show();
-        } else {
-            $moreText.show();
-            $ellipsis.hide();
-            $(this).hide();
-        }
-    });
-});
 
 // Script para curtir uma coleção
 let likeTimeout;
@@ -80,7 +58,7 @@ document.querySelectorAll('.like-button').forEach(button => {
                 }
             })
             .catch(error => console.error('Erro ao processar a requisição:', error));
-        });
+        }, 300); // Delay de 300ms
     });
 });
 

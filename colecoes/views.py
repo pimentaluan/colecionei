@@ -10,58 +10,33 @@ from itertools import chain
 from django.core.paginator import Paginator
 from django.db.models import Count
 from random import sample
+from django.urls import reverse
+from django.http import JsonResponse
 
 
 
 def pagina_anterior(request):
-    return request.META.get('HTTP_REFERER')
+    # Recupera o histórico de navegação
+    navigation_history = request.session.get('navigation_history', [])
+    
+    if len(navigation_history) > 1:
+        # Retorna para a penúltima página, removendo a atual
+        return redirect(navigation_history[-2])
+    else:
+        # Se não houver histórico, retorna à página inicial ou a uma página padrão
+        return redirect('feed')
+
 
 def feed(request):
-    if not request.user.is_authenticated:
-        messages.error(request, 'Usuário não logado')
-        return redirect('login')
-
-    user = request.user
-    icone = icone_aleatorio()
-
-    # Usuários seguidos
-    usuarios_seguidos = user.seguindo.all()
-
-    # Coleções dos usuários seguidos (mais relevantes primeiro)
-    colecoes_seguidas = Colecao.objects.filter(usuario__in=usuarios_seguidos).annotate(
-        likes_count=Count('likes')
-    ).order_by('-likes_count', '-data_criacao')
-
-    # Recomendações de coleções
-    categorias_interessadas = Item.objects.filter(colecao__usuario=user).values_list('categoria', flat=True)
-    recomendacoes_colecoes = Colecao.objects.filter(categoria__in=categorias_interessadas).exclude(usuario=user).annotate(
-        likes_count=Count('likes')
-    ).order_by('-likes_count', '-data_criacao')[:10]
-
-    # Recomendações de perfis esporádicas
-    usuarios_nao_seguidos = Usuario.objects.exclude(id__in=usuarios_seguidos).exclude(id=user.id)
-    num_usuarios_para_recomendar = min(3, len(usuarios_nao_seguidos))
-    recomendacoes_usuarios = sample(list(usuarios_nao_seguidos), num_usuarios_para_recomendar)
-
-    # Adicionando uma marcação de tipo para recomendação de usuário
-    recomendacoes_usuarios = [{'tipo': 'usuario', 'usuario': usuario} for usuario in recomendacoes_usuarios]
-
-    # Combinar coleções seguidas e recomendações em um único feed
-    feed_items = sorted(
-        chain(colecoes_seguidas, recomendacoes_colecoes, recomendacoes_usuarios),
-        key=lambda obj: obj.data_criacao if hasattr(obj, 'data_criacao') else timezone.now(),
-        reverse=True
-    )
-
-    paginator = Paginator(feed_items, 10)
+    colecoes = Colecao.objects.filter(usuario__id__in=request.user.seguindo.values_list('id', flat=True)).order_by('-data_criacao')
+    paginator = Paginator(colecoes, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'colecoes/feed.html', {
-        'user': user,
-        'icone_aleatorio': icone,
-        'feed_items': page_obj,
-    })
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'colecoes/feed.html', context)
 
 
 
@@ -269,9 +244,8 @@ def favoritos(request):
 
 def like_colecao(request, colecao_id):
     if not request.user.is_authenticated:
-        messages.error(request, 'Usuário não logado')
-        return redirect('login')
-    
+        return JsonResponse({'error': 'Usuário não logado'}, status=403)
+
     user = request.user
     colecao = get_object_or_404(Colecao, id=colecao_id)
 
@@ -279,26 +253,38 @@ def like_colecao(request, colecao_id):
 
     if user_has_liked:
         colecao.likes.remove(user)
+        liked = False
     else:
         colecao.likes.add(user)
+        liked = True
 
-    return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
+    # Retorna uma resposta JSON com o status e a contagem de curtidas
+    return JsonResponse({
+        'liked': liked,
+        'likes_count': colecao.likes.count()
+    })
 
 def salvar_colecao(request, colecao_id):
     if not request.user.is_authenticated:
-        messages.error(request, 'Usuário não logado')
-        return redirect('login')
+        return JsonResponse({'error': 'Usuário não logado'}, status=403)
+
     user = request.user
     colecao = get_object_or_404(Colecao, id=colecao_id)
 
     user_has_saved = user.colecoes_salvas.filter(id=colecao_id).exists()
 
+    # Adiciona ou remove a coleção dos salvos
     if user_has_saved:
         user.colecoes_salvas.remove(colecao)
+        saved = False
     else:
         user.colecoes_salvas.add(colecao)
+        saved = True
 
-    return redirect('colecao', username=colecao.usuario.username, colecao_id=colecao_id)
+    # Retorna um JSON com o estado "salvo" atualizado
+    return JsonResponse({
+        'saved': saved
+    })
 
 def comentar_colecao(request, colecao_id):
     if not request.user.is_authenticated:

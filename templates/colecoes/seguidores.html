@@ -6,7 +6,10 @@
 </head>
 
 <div class="seguindo-container">
-
+    <a href="{% url 'pagina_anterior' %}" class="btn-voltar">
+        <i class="fas fa-arrow-left"></i>
+        Voltar
+    </a>    
     <div class="usuarios-seguindo">
         {% for usuario in seguido %}
             <a href="{% url 'perfil' usuario %}" style="display: flex;">

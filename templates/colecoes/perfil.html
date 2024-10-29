@@ -45,11 +45,15 @@
                         {% if user.is_authenticated %}
                             {% if not esta_seguindo %}
                                 <div id="editar_perfil" class="seguir">
+                                    {% if other_user in request.user.seguidores.all %}
+                                    <a href="{% url 'seguir_usuario' other_user.id %}" class="stop-propagation">Seguir de volta</a>
+                                    {% else %}
                                     <a href="{% url 'seguir_usuario' other_user.id %}" class="stop-propagation">Seguir</a>
+                                    {% endif %}
                                 </div>
                             {% else %}
                                 <div id="editar_perfil" class="deixar-seguir">
-                                    <a href="{% url 'deixar_seguir_usuario' other_user.id %}" class="stop-propagation">Seguindo</a>
+                                    <a href="{% url 'deixar_seguir_usuario' other_user.id %}" class="stop-propagation">Deixar de seguir</a>
                                 </div>
                             {% endif %}
                         {% endif %}
@@ -76,9 +80,9 @@
 
                     <div class="stats" style="margin: 0;">
                         {% if quantidade_seguidores == 1 %}
-                        <a href="{% url 'seguidores' other_user.username %}"><p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor</a></p>
+                        <a href="{% url 'seguidores' other_user.username %}"><p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidor</p></a>
                         {% else %}
-                        <a href="{% url 'seguidores' other_user.username %}"><p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores</a></p>
+                        <a href="{% url 'seguidores' other_user.username %}"><p class="p_stats" style="margin-right: 20px; margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguidores|format_number }}</span> Seguidores</p></a>
                         {% endif %}
                         {% if quantidade_seguindo == 1 %}
                         <a href="{% url 'seguindo' other_user.username %}"><p class="p_stats" style=" margin-bottom: 10px; margin-top: 10px;"><span>{{ quantidade_seguindo|format_number }}</span> Seguindo</p></a>

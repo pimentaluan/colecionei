@@ -24,6 +24,12 @@ a {
     text-overflow: auto !important;
 }
 
+a{
+    text-decoration: none;
+    color: #FF0049;
+    text-decoration: none;
+}
+
 .menu_navegacao a {
     font-family: 'Nunito', sans-serif !important;
     font-size: 15pt !important;
@@ -228,6 +234,8 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    margin-bottom: 20px;
+    align-items: center;
 }
 
 .btn-fixed {
@@ -272,7 +280,6 @@ a {
 }
 
 .btn-fixed.liked {
-    background-color: #FF0049;
     color: white;
 }
 

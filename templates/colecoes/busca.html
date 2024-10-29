@@ -69,10 +69,14 @@
                             </div>
                         </div>
                         {% if not usuario.esta_seguindo %}
-                        <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary stop-propagation">Seguir</a>
+                            {% if usuario in request.user.seguidores.all %}
+                            <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary stop-propagation">Seguir de volta</a>
+                            {% else %}
+                            <a href="{% url 'seguir_usuario' usuario.id %}" class="btn btn-primary stop-propagation">Seguir</a>
+                            {% endif %}
                         {% else %}
                         <a href="{% url 'deixar_seguir_usuario' usuario.id %}"
-                            class="btn btn-danger stop-propagation">Seguindo</a>
+                            class="btn btn-danger stop-propagation">Deixar de seguir</a>
                         {% endif %}
                     </div>
                 </div>
